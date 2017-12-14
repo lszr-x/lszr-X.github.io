@@ -61,9 +61,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-python3笔记-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-python3笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/14/python3笔记-1/" class="article-date">
+    <a href="/2017/12/14/python3笔记/" class="article-date">
   <time datetime="2017-12-14T06:50:52.000Z" itemprop="datePublished">2017-12-14</time>
 </a>
     
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/14/python3笔记-1/">python3笔记</a>
+      <a class="article-title" href="/2017/12/14/python3笔记/">python3笔记</a>
     </h1>
   
 
@@ -83,48 +83,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ahbjkbajbfljabsjlbcjlbsaljb</p>
+        <h1 id="python3笔记总结"><a href="#python3笔记总结" class="headerlink" title="python3笔记总结"></a>python3笔记总结</h1><h2 id="2017-11-30"><a href="#2017-11-30" class="headerlink" title="2017-11-30"></a>2017-11-30</h2><ul>
+<li><p>find函数</p>
+<pre><code>参数（要查找字符串，查找起始位置（从0开始））
+调用方法：被查找字符串.find()
+返回值：查找到的第一个符合的字符串
+例子：
+</code></pre></li>
+</ul>
+<pre><code>解释：查找a字符串中所有的b字符串，并打印其起始位置
+</code></pre><ul>
+<li><p>count函数</p>
+<pre><code>参数：（要查询的字符串）
+调用方法：被查找字符串.find()
+返回值：要查找字符串在被查找字符串中出现的次数
+</code></pre></li>
+</ul>
+<h2 id="2017-12-02"><a href="#2017-12-02" class="headerlink" title="2017-12-02"></a>2017-12-02</h2><ul>
+<li><p>替换一个字符串中的字符方法</p>
+<pre><code>使用string和list之间的转换，把string先转换成list，然后进行替换或者改变，然后
+把list再转换成string
+如下：
+</code></pre><p>  <img src="图片/Python3-2017-12-02.png" alt=""></p>
+<pre><code>使用如上方法，最后的join方法即为重新转化的方法
+</code></pre></li>
+<li><p>生成一个全排列字典的方法</p>
+<pre><code>import itertools
+v = itertools.product(&apos;ACGT&apos;, repeat=x)
+C = {}
+for i in v:
+    C[&apos;&apos;.join(i)] = 0
+如上，即导入itertools包后使用一个字典来储存,x为全排列的位数，前面是内容，key值
+为全排列的内容，val为0
+</code></pre></li>
+<li><p>count函数使用注意：</p>
+<pre><code>count函数在使用时只能返回不重复的子串数量，不能返回有重复的子串数量，需要自己写
+函数实现，如下        
+</code></pre><p>  <img src="图片/Python3-2017-12-02_count函数.png" alt=""></p>
+<pre><code>如图，返回值为str1在str2中的数目（有重复）
+例如：aa在aaa中数量为2（有重复），数量为1（无重复）
+</code></pre></li>
+<li><p>字符串切片方法总结</p>
+<pre><code>str[::-1}
+</code></pre></li>
+</ul>
+<h2 id="2017-12-09"><a href="#2017-12-09" class="headerlink" title="2017-12-09"></a>2017-12-09</h2><ul>
+<li><p>range函数总结：</p>
+<p>  使用方法<br>  range（a，b，c）<br>  参数解释：a和b使起始和终止的区间位置，[a,b)这样的区间，a不填默认是0，c是增量的大小，不填默认是1</p>
+</li>
+<li><p>list排序函数：</p>
+<p>  使用方法：<br>  list.sort()        #永久排序<br>  sorted（list)        #返回排序结果，不改变序列的值</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/14/python3笔记-1/" data-id="cjb64rquf0001fqfyu8kkxznr" class="article-share-link">Teilen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/14/test/" class="article-date">
-  <time datetime="2017-12-14T06:50:32.000Z" itemprop="datePublished">2017-12-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/14/test/">test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/14/test/" data-id="cjb64rqut0003fqfyssatt94y" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/14/python3笔记/" data-id="cjb64u8290001hlfy7415iqwm" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -160,89 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/14/hello-world/" data-id="cjb64rqu70000fqfy6azswqir" class="article-share-link">Teilen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-python3笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/30/python3笔记/" class="article-date">
-  <time datetime="2017-11-30T13:03:05.000Z" itemprop="datePublished">2017-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#python3笔记总结</p>
-<p>##2017-11-30</p>
-<ul>
-<li><p>find函数</p>
-<pre><code>参数（要查找字符串，查找起始位置（从0开始））
-调用方法：被查找字符串.find()
-返回值：查找到的第一个符合的字符串
-例子：
-</code></pre></li>
-</ul>
-<pre><code>解释：查找a字符串中所有的b字符串，并打印其起始位置
-</code></pre><ul>
-<li><p>count函数</p>
-<pre><code>参数：（要查询的字符串）
-调用方法：被查找字符串.find()
-返回值：要查找字符串在被查找字符串中出现的次数
-</code></pre></li>
-</ul>
-<p>##2017-12-02</p>
-<ul>
-<li><p>替换一个字符串中的字符方法</p>
-<pre><code>使用string和list之间的转换，把string先转换成list，然后进行替换或者改变，然后
-把list再转换成string
-如下：
-</code></pre><p>  <img src="图片/Python3-2017-12-02.png" alt=""></p>
-<pre><code>使用如上方法，最后的join方法即为重新转化的方法
-</code></pre></li>
-<li><p>生成一个全排列字典的方法</p>
-<pre><code>import itertools
-v = itertools.product(&apos;ACGT&apos;, repeat=x)
-C = {}
-for i in v:
-    C[&apos;&apos;.join(i)] = 0
-如上，即导入itertools包后使用一个字典来储存,x为全排列的位数，前面是内容，key值
-为全排列的内容，val为0
-</code></pre></li>
-<li><p>count函数使用注意：</p>
-<pre><code>count函数在使用时只能返回不重复的子串数量，不能返回有重复的子串数量，需要自己写
-函数实现，如下        
-</code></pre><p>  <img src="图片/Python3-2017-12-02_count函数.png" alt=""></p>
-<pre><code>如图，返回值为str1在str2中的数目（有重复）
-例如：aa在aaa中数量为2（有重复），数量为1（无重复）
-</code></pre></li>
-<li><p>字符串切片方法总结</p>
-<pre><code>str[::-1}
-</code></pre></li>
-</ul>
-<p>##2017-12-09</p>
-<ul>
-<li><p>range函数总结：</p>
-<p>  使用方法<br>  range（a，b，c）<br>  参数解释：a和b使起始和终止的区间位置，[a,b)这样的区间，a不填默认是0，c是增量的大小，不填默认是1</p>
-</li>
-<li><p>list排序函数：</p>
-<p>  使用方法：<br>  list.sort()        #永久排序<br>  sorted（list)        #返回排序结果，不改变序列的值</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/30/python3笔记/" data-id="cjb64rquq0002fqfywzms3ftr" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/14/hello-world/" data-id="cjb64u8220000hlfyv4n4ireg" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -270,7 +203,7 @@ for i in v:
   <div class="widget-wrap">
     <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
     </div>
   </div>
 
@@ -283,19 +216,11 @@ for i in v:
       <ul>
         
           <li>
-            <a href="/2017/12/14/python3笔记-1/">python3笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/14/test/">test</a>
+            <a href="/2017/12/14/python3笔记/">python3笔记</a>
           </li>
         
           <li>
             <a href="/2017/12/14/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/30/python3笔记/">(no title)</a>
           </li>
         
       </ul>
