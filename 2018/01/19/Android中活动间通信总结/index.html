@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/putExtraType.png">
 <meta property="og:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/普通传值结果.png">
 <meta property="og:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/传递对象结果.png">
-<meta property="og:updated_time" content="2018-01-19T02:58:51.000Z">
+<meta property="og:updated_time" content="2018-01-19T03:27:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中活动间通信总结">
 <meta name="twitter:description" content="作者：不洗碗工作室 - lszr  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，比如，从Activity1到Activity">
@@ -191,7 +191,8 @@ startActivity(intent);
 <pre><code>Intent intent=getIntent();
 String testString=intent.getStringExtra(&quot;keyName&quot;);
 Log.d(&quot;lastActivityData&quot;,testString);
-</code></pre><p>log出来以后可以看到接收到了前一个Activity传过来的数据</p>
+</code></pre><a id="more"></a>
+<p>log出来以后可以看到接收到了前一个Activity传过来的数据</p>
 <p><img src="普通传值结果.png" alt=""></p>
 <p>或者可以这样写，也可以获得正确的数据</p>
 <pre><code>Intent intent=getIntent();
