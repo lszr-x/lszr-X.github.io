@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Android中活动间通信总结 | lszr&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作者：不洗碗工作室 - lszr  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，比如，从Activity1到Activity">
+  <meta name="description" content="作者：不洗碗工作室 - lszr  文章出处：Android中活动间通信总结  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中活动间通信总结">
 <meta property="og:url" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
-<meta property="og:description" content="作者：不洗碗工作室 - lszr  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，比如，从Activity1到Activity">
-<meta property="og:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/putExtraType.png">
-<meta property="og:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/普通传值结果.png">
-<meta property="og:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/传递对象结果.png">
-<meta property="og:updated_time" content="2018-01-19T03:27:31.000Z">
+<meta property="og:description" content="作者：不洗碗工作室 - lszr  文章出处：Android中活动间通信总结  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，">
+<meta property="og:image" content="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/68456980.jpg">
+<meta property="og:image" content="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/962905.jpg">
+<meta property="og:image" content="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/43259533.jpg">
+<meta property="og:updated_time" content="2018-01-21T12:43:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中活动间通信总结">
-<meta name="twitter:description" content="作者：不洗碗工作室 - lszr  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，比如，从Activity1到Activity">
-<meta name="twitter:image" content="http://yoursite.com/2018/01/19/Android中活动间通信总结/putExtraType.png">
+<meta name="twitter:description" content="作者：不洗碗工作室 - lszr  文章出处：Android中活动间通信总结  版权归作者所有，转载请注明出处  一般传输方法一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数  这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，">
+<meta name="twitter:image" content="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/68456980.jpg">
   
     <link rel="alternative" href="/atom.xml" title="lszr&#39;s blog" type="application/atom+xml">
   
@@ -179,10 +179,11 @@
       
         <blockquote>
 <p> 作者：不洗碗工作室 - lszr</p>
+<p> 文章出处：<a href="https://lszr-x.github.io/" target="_blank" rel="noopener">Android中活动间通信总结</a></p>
 <p> 版权归作者所有，转载请注明出处</p>
 </blockquote>
 <h2 id="一般传输方法"><a href="#一般传输方法" class="headerlink" title="一般传输方法"></a>一般传输方法</h2><p>一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数</p>
-<p><img src="putExtraType.png" alt="putExtra参数类型"></p>
+<p><img src="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/68456980.jpg" alt=""></p>
 <p>这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，比如，从Activity1到Activity2传一个字符串可以这样写</p>
 <pre><code>Intent intent=new Intent(MainActivity.this,TestActivity.class);
 intent.putExtra(&quot;keyName&quot;,&quot;testString&quot;);
@@ -191,9 +192,8 @@ startActivity(intent);
 <pre><code>Intent intent=getIntent();
 String testString=intent.getStringExtra(&quot;keyName&quot;);
 Log.d(&quot;lastActivityData&quot;,testString);
-</code></pre><a id="more"></a>
-<p>log出来以后可以看到接收到了前一个Activity传过来的数据</p>
-<p><img src="普通传值结果.png" alt=""></p>
+</code></pre><p>log出来以后可以看到接收到了前一个Activity传过来的数据</p>
+<p><img src="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/962905.jpg" alt=""></p>
 <p>或者可以这样写，也可以获得正确的数据</p>
 <pre><code>Intent intent=getIntent();
 String testString=intent.getExtras().getString(&quot;keyName&quot;);
@@ -286,7 +286,7 @@ Log.d(&quot;lastActivityData&quot;,personModel.getPersonGender());
 Log.d(&quot;lastActivityData&quot;,personModel.getPersonId());
 Log.d(&quot;lastActivityData&quot;,personModel.getPersonName());
 </code></pre><p>可以看到日志中所打印出来的数据，与预期得到的数据相符，证明这种传递对象的方法是可以的</p>
-<p><img src="传递对象结果.png" alt=""></p>
+<p><img src="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/43259533.jpg" alt=""></p>
 <h3 id="2、使Model类实现Parcelable接口"><a href="#2、使Model类实现Parcelable接口" class="headerlink" title="2、使Model类实现Parcelable接口"></a>2、使Model类实现Parcelable接口</h3><p>同样的需要在Model类中实现这个接口，但是有所不同的是，需要在再实现对应的几个方法，Model的代码如下：</p>
 <pre><code>public class PersonModel implements Parcelable {
     public String personName;
