@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/22/Android笔记/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
 <meta property="og:description" content="笔记2017-11-21Scrollview嵌套问题Scroview内部嵌套控件时只能嵌套单个，可以把内部多个控件用LinearLayout或者Relativelayout包含起来 Nestedscroview嵌套Recylerview问题recylerviewTeamMember.setNestedScrollingEnabled(false); 可以解决问题，但是注意item的最外层控件的he">
-<meta property="og:updated_time" content="2018-03-13T10:41:14.000Z">
+<meta property="og:updated_time" content="2018-03-18T10:53:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记">
 <meta name="twitter:description" content="笔记2017-11-21Scrollview嵌套问题Scroview内部嵌套控件时只能嵌套单个，可以把内部多个控件用LinearLayout或者Relativelayout包含起来 Nestedscroview嵌套Recylerview问题recylerviewTeamMember.setNestedScrollingEnabled(false); 可以解决问题，但是注意item的最外层控件的he">
@@ -267,7 +267,246 @@ id的效果，第一次实际使用时在AlertDialog中自定义布局文件以�
 </blockquote>
 <pre><code>if (string==null||string.length()&lt;=0)
 </code></pre><p>且前后顺序不能乱。</p>
+<p>##2018-3-13</p>
+<p>###TaskGo项目知识点总结</p>
+<ul>
+<li><p>mine模块：</p>
+<ul>
+<li>圆形头像:</li>
+</ul>
+<p>使用如下控件为圆形头像，和正常使用imageView没有区别，一样使用就可以</p>
+<pre><code>de.hdodenhof.circleimageview.CircleImageView
+</code></pre><ul>
+<li><p>加载网络外链图片：</p>
+<pre><code>Glide
+    .with(MineFragment.this)
+    .load(mineInformationModel.getAvatar())
+    .into(imgPortrait);
+</code></pre><p>  with后加当前活动的context，load参数为外链地址，into参数为加载到的控件。</p>
+</li>
+<li><p>刷新页面重写方法：</p>
+<p>  onResume()方法,在此方法内进行数据的再次绑定</p>
+</li>
+<li><p>获取下一个Activity传回的数据方法：使用startActivityForResult方法：</p>
+<p>  和调用startActivity方法一样调用此方法，但是参数要多一个requestCode，为自定义数字，为回调时的判断用，在结束新的Activity时要使用setResult方法，参数为第一个自定义的数字（resultCode）和一个Intent（使用putExtra方法传值后），然后在原Activity方法中重写onActivityResult方法，然后在这个方法中获取对应的数据。代码如下：</p>
+<p>  启动新Activity的方法：</p>
+<pre><code>public static void startChangeNameActivity(Activity activity, Context context) {
+    Intent intent = new Intent(context, ChangeNameActivity.class);
+    activity.startActivityForResult(intent, 10);
 
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>    新Activity结束时的方法：
+
+        Intent intent = new Intent();
+        intent.putExtra(&quot;newName&quot;, editChangeName.getText().toString().trim());
+        setResult(RESULT_OK, intent);
+        finish();
+
+    原Activity中重写的方法：
+
+
+            @Override
+            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+             super.onActivityResult(requestCode, resultCode, data);
+
+            if (resultCode == RESULT_OK) {
+
+                switch (requestCode) {
+
+                    case FileUtil.CAMERA_REQUEST:
+                        imgPortrait.setImageBitmap(BitmapFactory.decodeFile(photoPath));
+                        UpLoadHelper.upLoadImgToQiNiu(photoPath, this);
+                        mProgressDialog = new DialogUtil().new NativeProgressDialog();
+                        mProgressDialog
+                                .initDialog(EditDataActivity.this)
+                                .setMessage(&quot;请稍后&quot;)
+                                .showDialog();
+                        hasImg = true;
+                        break;
+                    case FileUtil.ALBUM_REQUEST:
+                        String picturePath = FileUtil.getSelectedPicturePath(data, EditDataActivity.this);
+                        imgPortrait.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                        photoPath = picturePath;
+                        UpLoadHelper.upLoadImgToQiNiu(photoPath, this);
+                        mProgressDialog = new DialogUtil().new NativeProgressDialog();
+                        mProgressDialog
+                                .initDialog(EditDataActivity.this)
+                                .setMessage(&quot;请稍后&quot;)
+                                .showDialog();
+                        hasImg = true;
+                        break;
+                    case 10:
+                        if (resultCode == RESULT_OK) {
+                            String newName=data.getStringExtra(&quot;newName&quot;);
+                            mTxtMineName.setText(newName);
+                            mPresenter.requestUpdateInformation(newName,mineInformationModel.getAvatar(),mineInformationModel.getSex(),mineInformationModel.getBirth());
+                            mineInformationModel.setName(newName);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            }
+
+
++ 日期选择控件：
+
+    使用TimePickerView控件进行日期选择：
+
+    导入依赖：        compile &apos;com.contrarywind:Android-PickerView:3.2.5&apos;
+
+    具体使用：
+
+            TimePickerView timePickerView = new TimePickerView
+                .Builder(EditDataActivity.this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                //设置日期显示格式
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+                //获得对应选择的日期
+                String format = simpleDateFormat.format(date);
+                //TODO：写对应的选择完成后的操作
+            }
+        })
+                //设置显示的列的数量，即日期的精确程度
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .build();
+        timePickerView.show();
+
+拓展：
+
+        Calendar selectedDate = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(2013,1,1);//设置起始年份
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2020,1,1);//设置结束年份
+
+
+        .setCancelText(&quot;取消&quot;)//取消按钮文字
+      .setSubmitText(&quot;确定&quot;)//确认按钮文字
+      .setContentSize(18)//滚轮文字大小
+      .setTitleSize(20)//标题文字大小
+      .setTitleText(&quot;选择时间&quot;)//标题文字
+      .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
+      .isCyclic(true)//是否循环滚动
+      .setTitleColor(Color.BLACK)//标题文字颜色
+      .setSubmitColor(R.color.hui)//确定按钮文字颜色
+      .setCancelColor(R.color.hui)//取消按钮文字颜色
+      .setTitleBgColor(0xFF666666)//标题背景颜色 Night mode
+      .setBgColor(0xFF333333)//滚轮背景颜色 Night mode
+      .setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR) + 20)//默认是1900-2100年
+      .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
+      .setRangDate(startDate,endDate)//起始终止年月日设定
+      .setLabel(&quot;年&quot;,&quot;月&quot;,&quot;日&quot;,&quot;时&quot;,&quot;分&quot;,&quot;秒&quot;)
+      .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+      .isDialog(false)//是否显示为对话框样式
+      .build();
+</code></pre><ul>
+<li><p>工具类模块：</p>
+<ul>
+<li><p>文件工具类（FileUtil）：</p>
+<ul>
+<li><p>动态申请权限：</p>
+<p>  Google将权限分为两类，一类是Normal Permissions，这类权限一般不涉及用户隐私，是不需要用户进行授权的，比如手机震动、访问网络等；另一类是Dangerous Permission，一般是涉及到用户隐私的，需要用户进行授权，比如读取sdcard、访问通讯录等。</p>
+<p>  Normal Permissions：</p>
+<pre><code>ACCESS_LOCATION_EXTRA_COMMANDS
+ACCESS_NETWORK_STATE
+ACCESS_NOTIFICATION_POLICY
+ACCESS_WIFI_STATE
+BLUETOOTH
+BLUETOOTH_ADMIN
+BROADCAST_STICKY
+CHANGE_NETWORK_STATE
+CHANGE_WIFI_MULTICAST_STATE
+CHANGE_WIFI_STATE
+DISABLE_KEYGUARD
+EXPAND_STATUS_BAR
+GET_PACKAGE_SIZE
+INSTALL_SHORTCUT
+INTERNET
+KILL_BACKGROUND_PROCESSES
+MODIFY_AUDIO_SETTINGS
+NFC
+READ_SYNC_SETTINGS
+READ_SYNC_STATS
+RECEIVE_BOOT_COMPLETED
+REORDER_TASKS
+REQUEST_INSTALL_PACKAGES
+SET_ALARM
+SET_TIME_ZONE
+SET_WALLPAPER
+SET_WALLPAPER_HINTS
+TRANSMIT_IR
+UNINSTALL_SHORTCUT
+USE_FINGERPRINT
+VIBRATE
+WAKE_LOCK
+WRITE_SYNC_SETTINGS
+</code></pre><p>Dangerous Permissions:</p>
+<pre><code>  group:android.permission-group.CONTACTS
+permission:android.permission.WRITE_CONTACTS
+permission:android.permission.GET_ACCOUNTS
+permission:android.permission.READ_CONTACTS
+</code></pre><p>  group:android.permission-group.PHONE</p>
+<pre><code>permission:android.permission.READ_CALL_LOG
+permission:android.permission.READ_PHONE_STATE
+permission:android.permission.CALL_PHONE
+permission:android.permission.WRITE_CALL_LOG
+permission:android.permission.USE_SIP
+permission:android.permission.PROCESS_OUTGOING_CALLS
+permission:com.android.voicemail.permission.ADD_VOICEMAIL
+</code></pre><p>  group:android.permission-group.CALENDAR</p>
+<pre><code>permission:android.permission.READ_CALENDAR
+permission:android.permission.WRITE_CALENDAR
+</code></pre><p>  group:android.permission-group.CAMERA</p>
+<pre><code>permission:android.permission.CAMERA
+</code></pre><p>  group:android.permission-group.SENSORS</p>
+<pre><code>permission:android.permission.BODY_SENSORS
+</code></pre><p>  group:android.permission-group.LOCATION</p>
+<pre><code>permission:android.permission.ACCESS_FINE_LOCATION
+permission:android.permission.ACCESS_COARSE_LOCATION
+</code></pre><p>  group:android.permission-group.STORAGE</p>
+<pre><code>permission:android.permission.READ_EXTERNAL_STORAGE
+permission:android.permission.WRITE_EXTERNAL_STORAGE
+</code></pre><p>  group:android.permission-group.MICROPHONE</p>
+<pre><code>permission:android.permission.RECORD_AUDIO
+</code></pre><p>  group:android.permission-group.SMS</p>
+<pre><code>permission:android.permission.READ_SMS
+permission:android.permission.RECEIVE_WAP_PUSH
+permission:android.permission.RECEIVE_MMS
+permission:android.permission.RECEIVE_SMS
+permission:android.permission.SEND_SMS
+permission:android.permission.READ_CELL_BROADCASTS
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    首先要检查权限：
+
+        if (ContextCompat.checkSelfPermission(thisActivity,
+            Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED) {
+        }else{
+            //
+        }
+    此处的checkSelfPermission方法即为检查权限是否开启的方法，然后进行权限请求：
+
+            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+
+
+
+
+
+
+
++ 正则表达式工具类（RegexpUtils）：
+</code></pre>
       
 
       

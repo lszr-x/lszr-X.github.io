@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/11/c++笔记/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
 <meta property="og:description" content="#C++笔记  位运算  或：| 有一个是1就是1且：&amp;amp; 两个都是1才是1异或：^ 相同为0，不同为1  加法  关于实现使用c++的语法的加法的模拟： 使用递归求解：要实现三步， 思路：考虑一个普通的加法计算：5＋17＝22 _在十进制加法中可以分为如下3步进行： 1. 忽略进位，只做对应各位数字相加，得到12（个位上5＋7＝12，忽略进位，结果2）； 2. 记录进位，上一步计算中只有个">
-<meta property="og:updated_time" content="2018-03-11T06:39:20.000Z">
+<meta property="og:updated_time" content="2018-03-18T10:53:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++笔记">
 <meta name="twitter:description" content="#C++笔记  位运算  或：| 有一个是1就是1且：&amp;amp; 两个都是1才是1异或：^ 相同为0，不同为1  加法  关于实现使用c++的语法的加法的模拟： 使用递归求解：要实现三步， 思路：考虑一个普通的加法计算：5＋17＝22 _在十进制加法中可以分为如下3步进行： 1. 忽略进位，只做对应各位数字相加，得到12（个位上5＋7＝12，忽略进位，结果2）； 2. 记录进位，上一步计算中只有个">
@@ -207,6 +207,50 @@ return add(sum , carry);//递归，相加。
 </ul>
 <p>即求对应的n中所有的5的个数，但是需要注意的是，5的次方中有多个5，因此，对于一个数n，需要求出它中5的个数+25的个数+。。。最后即可得所有5的个数，相当于25是在5的时候算了一遍，然后再在25的时候再算一遍，因此，需要把n一直除5求和，最后就是个数。</p>
 <p>参考：<a href="">http://blog.csdn.net/surp2011/article/details/51168272</a></p>
+<p>#STL之vector排序及使用</p>
+<ul>
+<li><p>vector的基本使用</p>
+<ul>
+<li><p>创建：vector<int> vec;</int></p>
+</li>
+<li><p>尾部插入数字：vec.push_back(a);</p>
+</li>
+<li>使用下标访问元素，cout&lt;&lt;vec[0]&lt;&lt;endl;记住下标是从0开始的。</li>
+<li><p>使用迭代器访问元素：</p>
+<p>  vector<int>::iterator it;</int></p>
+<p>  for(it=vec.begin();it!=vec.end();it++)</p>
+<p>  cout&lt;&lt;*it&lt;&lt;endl;</p>
+</li>
+<li><p>插入元素：    vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;</p>
+</li>
+<li>删除元素：    vec.erase(vec.begin()+2);删除第3个元素，vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始</li>
+<li>向量大小:vec.size();</li>
+<li>清空:vec.clear();</li>
+<li>可以定义结构体（全局），具体参见<a href="">http://blog.csdn.net/duan19920101/article/details/50617190/</a></li>
+<li>算法：<ul>
+<li>使用reverse将元素翻转：<pre><code>#include&lt;algorithm&gt;
+reverse(vec.begin(),vec.end());//将元素翻转，即逆序排列！
+</code></pre></li>
+<li>使用sort排序：<pre><code>#include&lt;algorithm&gt;
+sort(vec.begin(),vec.end());//(默认是按升序排列,即从小到大)
+可以通过重写排序比较函数按照降序比较，如下：
+定义排序比较函数：
+bool Comp(const int &amp;a,const int &amp;b)
+{
+    return a&gt;b;
+}
+调用时:sort(vec.begin(),vec.end(),Comp)，这样就降序排序。 
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>0与浮点数的比较：设置一个较小的比较对象，使用&lt;=和&gt;=去比较</p>
+<p>  const float EPSINON = 0.000001;</p>
+</li>
+</ul>
 
       
 
@@ -299,6 +343,15 @@ return add(sum , carry);//递归，相加。
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/03/19/java基础知识/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java基础知识笔记
+        
+      </div>
+    </a>
   
   
     <a href="/2018/01/19/Android中活动间通信总结/" id="article-nav-older" class="article-nav-link-wrap">
