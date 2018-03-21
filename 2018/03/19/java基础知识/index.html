@@ -14,10 +14,12 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/19/java基础知识/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
 <meta property="og:description" content="#java基础知识  类，对象   实例化：使用关键字new来创建一个对象。  实例变量 关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法  类变量： 类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经">
-<meta property="og:updated_time" content="2018-03-19T08:41:34.000Z">
+<meta property="og:image" content="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg">
+<meta property="og:updated_time" content="2018-03-21T07:40:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java基础知识笔记">
 <meta name="twitter:description" content="#java基础知识  类，对象   实例化：使用关键字new来创建一个对象。  实例变量 关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法  类变量： 类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经">
+<meta name="twitter:image" content="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg">
   
     <link rel="alternative" href="/atom.xml" title="lszr&#39;s blog" type="application/atom+xml">
   
@@ -189,7 +191,7 @@
 <li>不能对已经初始化的变量修改,且作为类成员变量的时候必须被构造函数初始化或者有初值</li>
 <li>对于final修饰的引用变量，如一个对象，对象的指向不能再改变，比如等于重新new一个，但是其指向可以被改变，即此对象的实例变量可以被修改</li>
 <li>匿名内部类中使用的外部局部变量为什么只能是final变量</li>
-<li>参考：<a href="">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
+<li>参考：<a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
 </ul>
 </li>
 </ul>
@@ -200,7 +202,7 @@
 + java方法是值传递
 </code></pre><p>##内部类仍存疑（参考中）</p>
 <ul>
-<li><p>内部类：参考<a href="">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
+<li><p>内部类：参考<a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
 <ul>
 <li>成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括private成员和静态成员）。</li>
 <li><p>当成员内部类拥有和外部类同名的成员变量或者方法时，会发生隐藏现象，即默认情况下访问的是成员内部类的成员。如果要访问外部类的同名成员，需要以下面的形式进行访问：</p>
@@ -223,7 +225,7 @@ Outter.Inner inner = outter.new Inner();
 </ul>
 </li>
 <li>对于基本数据类型，可以直接用==判断是否为相等，每个变量的对比即为其内部的值的对比</li>
-<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
+<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="http://www.cnblogs.com/dolphin0520/p/3592500.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
 </ul>
 </li>
 </ul>
@@ -277,7 +279,23 @@ public boolean equals(Object anObject) {
 <li>result = object instanceof class         </li>
 </ul>
 </li>
-<li></li>
+<li>对象拷贝：<ul>
+<li>分为引用拷贝，浅拷贝，深拷贝</li>
+<li>引用拷贝：直接使用=来给引用对象赋值，是相当于建立了一个相同的的引用，指向同一个对象</li>
+<li>浅拷贝：</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>关于float和double的问题：</p>
+<ul>
+<li>单双精度的区别<br><img src="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg" alt="">        </li>
+<li><p>关于float精度丢失问题，参考<a href="http://blog.csdn.net/bonjean/article/details/51475363" target="_blank" rel="noopener">Java学习_ 基本数据类型_float</a></p>
+</li>
+<li><p>整数是可以被保存为有限的二进制整数的，但是小数不行，有可能出现无限循环的二进制数，所以关于有的小数是可以准确表示的，有的是一个接近的值来存储的。</p>
+</li>
+</ul>
+</li>
 </ul>
 
       
