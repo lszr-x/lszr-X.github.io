@@ -11,7 +11,7 @@
   <meta name="description" content="东北大学秦皇岛分校16级计科专业学生一枚">
 <meta property="og:type" content="website">
 <meta property="og:title" content="lszr&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
 <meta property="og:description" content="东北大学秦皇岛分校16级计科专业学生一枚">
 <meta name="twitter:card" content="summary">
@@ -154,149 +154,360 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-java基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/19/java基础知识/">java基础知识笔记</a>
+      <a class="article-title" href="/2017/11/22/Android笔记/">Android笔记</a>
     </h1>
   
 
         
-        <a href="/2018/03/19/java基础知识/" class="archive-article-date">
-  	<time datetime="2018-03-19T08:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
+        <a href="/2017/11/22/Android笔记/" class="archive-article-date">
+  	<time datetime="2017-11-21T16:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#java基础知识</p>
+        <h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h2 id="2017-11-21"><a href="#2017-11-21" class="headerlink" title="2017-11-21"></a>2017-11-21</h2><h3 id="Scrollview嵌套问题"><a href="#Scrollview嵌套问题" class="headerlink" title="Scrollview嵌套问题"></a>Scrollview嵌套问题</h3><pre><code>Scroview内部嵌套控件时只能嵌套单个，可以把内部多个控件用LinearLayout或者Relativelayout包含起来
+</code></pre><h3 id="Nestedscroview嵌套Recylerview问题"><a href="#Nestedscroview嵌套Recylerview问题" class="headerlink" title="Nestedscroview嵌套Recylerview问题"></a>Nestedscroview嵌套Recylerview问题</h3><pre><code>recylerviewTeamMember.setNestedScrollingEnabled(false);
+可以解决问题，但是注意item的最外层控件的height要是wrap_content，不然不会显示第二项
+</code></pre><p>##2017-11-27</p>
+<h3 id="TooBarActivity中改变样式的方法"><a href="#TooBarActivity中改变样式的方法" class="headerlink" title="TooBarActivity中改变样式的方法"></a>TooBarActivity中改变样式的方法</h3><pre><code>布局文件中添加一个width为0的TextView，然后添加对应的set方法，在继承的activity文件
+中写一个initTitle方法，对于此方法，使用findViewById时要提前调用getToolBar方法然
+后再调用findViewById方法
+然后后面点击事件一般正常使用即可
+</code></pre><h3 id="关于Activity退出相关事宜（singleTask"><a href="#关于Activity退出相关事宜（singleTask" class="headerlink" title="关于Activity退出相关事宜（singleTask)"></a>关于Activity退出相关事宜（singleTask)</h3><pre><code>方法一：
+它的功能就是
+如果要启动的Activity不在，就创建新的然后放到栈顶。
+如果要启动的Activity已经在栈顶，就跟singleTop模式一样。
+如果要启动的Activity已经在于栈中，就会干掉这个Activty上面的所有其他Activty。
+
+举个栗子：
+1.A-B-C-D------E
+A-B-C-D-E
+
+2.A-B-C-D------D
+A-B-C-D------D
+
+3.A-B-C-D------B
+就变成
+A-B
+
+（作者：eiun
+链接：http://www.jianshu.com/p/5ecf6955dac8
+來源：简书）
+</code></pre><p>#</p>
+<pre><code>方法二：使用静态变量：
+在 ActivityA 里面设置一个静态的变量instance,初始化为this
+在 ActivityB 里面, ActivityA.instance.finish();（未尝试）
+具体实现例子见：http://blog.sina.com.cn/s/blog_6e334dc701018m2v.html
+</code></pre><h3 id="EditText光标位置问题"><a href="#EditText光标位置问题" class="headerlink" title="EditText光标位置问题"></a>EditText光标位置问题</h3><pre><code>当EditText使用时，如果height高于textSize时，光标默认居中，需要设置
+    android:gravity=&quot;start&quot;
+使光标位于开头（剩余属性未尝试）
+</code></pre><h3 id="inflate初步接触"><a href="#inflate初步接触" class="headerlink" title="inflate初步接触"></a>inflate初步接触</h3><pre><code>使用：
+可以在一个java文件中查找xml布局文件，从而达到在不同的java文件中使用xml布局文件中的
+id的效果，第一次实际使用时在AlertDialog中自定义布局文件以后，要绑定不同控件的id，
+直接使用findViewById会闪退，所以要用inflate先查找到xml文件，然后再调用，例子如
+下：
+</code></pre><p>##2017-12-10</p>
+<p>###GET网络请求</p>
+<blockquote>
+<p>使用retrofit框架还是有点不熟：</p>
+</blockquote>
 <ul>
-<li><p>类，对象</p>
-<p>  实例化：使用关键字new来创建一个对象。</p>
-<ul>
-<li><p>实例变量</p>
-<p>关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法</p>
-</li>
-<li><p>类变量：</p>
-<p>类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经常被声明为常量，很少单独使用static声明变量。静态变量在程序开始时创建，在程序结束时销毁。</p>
-</li>
-<li><p>final变量：</p>
-<ul>
-<li>不能对已经初始化的变量修改,且作为类成员变量的时候必须被构造函数初始化或者有初值</li>
-<li>对于final修饰的引用变量，如一个对象，对象的指向不能再改变，比如等于重新new一个，但是其指向可以被改变，即此对象的实例变量可以被修改</li>
-<li>匿名内部类中使用的外部局部变量为什么只能是final变量</li>
-<li>参考：<a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
+<li>在写response的时候，要能符合它的规范和字段，比如说使用List，使用时要用list.get(i)来获取List对象的item</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>+ final类：不可以被任何类继承且内部类会被被隐式地指定为final方法。
-+ final方法:不可以被子类重写的方法
-+ java方法是值传递
-</code></pre><p>##内部类仍存疑（参考中）</p>
+<p>##2017-12-11</p>
+<p>###intent传递int值</p>
+<blockquote>
+<p>和使用intent传递string类型有所不同</p>
+</blockquote>
 <ul>
-<li><p>内部类：参考<a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
+<li>传递string类型时</li>
+</ul>
+<p>首先用原intent对象去putExtra(“keyString”,T)<br>在接收端去用intent对象使用getIntent()<br>然后令string类型的变量=intent.getStringExtra(“keyString”)即可</p>
 <ul>
-<li>成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括private成员和静态成员）。</li>
-<li><p>当成员内部类拥有和外部类同名的成员变量或者方法时，会发生隐藏现象，即默认情况下访问的是成员内部类的成员。如果要访问外部类的同名成员，需要以下面的形式进行访问：</p>
-<p>  外部类.this.成员变量</p>
-<p>  外部类.this.成员方法</p>
+<li>传递int类型数据时</li>
+</ul>
+<p>最后获得数据的时候要调用这个方法intent.getExtras().getInt(“keyString”);</p>
+<pre><code>否则数据会变成0，在直接使用getIntExtra的时候？存疑
+</code></pre><p>getIntExtra方法的第二个参数的含义是什么？</p>
+<p>##2017-12-13</p>
+<p>###使用intent在Activity和fragment之间进行传递</p>
+<blockquote>
+<p>传递普通的单一类型很简单，按照正常的putExtra就可以</p>
+</blockquote>
+<ul>
+<li>传递类型的集合的时候</li>
+</ul>
+<p>第一种方法：</p>
+<p>一个一个值去putExtra()，因为类似哈希的传值方式，所以可以使用这种方式进行传值，但是<br>过于繁琐</p>
+<p>第二种方法：</p>
+<ul>
+<li>使用Bundle去传值：</li>
+</ul>
+<p>用Bundle的实例化对象去调用putString()方法，然后把所有变量都与<br>Bundle的对象进行类似哈希的绑定（与第一种方法类似），然后调用intent的putExtras()<br>的方法，在接收时，先接收intent的getExtras()方法，然后再调用Bundle的get系列方法</p>
+<p>第三种方法：</p>
+<ul>
+<li>使用传递对象的方法：</li>
+</ul>
+<p>使用intent传递对象，和传递String类型的值在用法上区别不大，但是<br>需要对传递的对象的model类继承接口，有两种接口：</p>
+<blockquote>
+</blockquote>
+<h2 id="2017-12-14"><a href="#2017-12-14" class="headerlink" title="2017-12-14"></a>2017-12-14</h2><ul>
+<li>判断字符串是否为空的方法：</li>
+</ul>
+<blockquote>
+<p>字符串为null的时候使用equals的方法会报错（尚未实验），所以一般判断是否为空的时候要先判断是否为null，然后再看是否为空字符串，即：</p>
+</blockquote>
+<pre><code>if (string==null||string.length()&lt;=0)
+</code></pre><p>且前后顺序不能乱。</p>
+<p>##2018-3-13</p>
+<p>###TaskGo项目知识点总结</p>
+<ul>
+<li><p>mine模块：</p>
+<ul>
+<li>圆形头像:</li>
+</ul>
+<p>使用如下控件为圆形头像，和正常使用imageView没有区别，一样使用就可以</p>
+<pre><code>de.hdodenhof.circleimageview.CircleImageView
+</code></pre><ul>
+<li><p>加载网络外链图片：</p>
+<pre><code>Glide
+    .with(MineFragment.this)
+    .load(mineInformationModel.getAvatar())
+    .into(imgPortrait);
+</code></pre><p>  with后加当前活动的context，load参数为外链地址，into参数为加载到的控件。</p>
 </li>
-<li><p>在外部类中如果要访问成员内部类的成员，必须先创建一个成员内部类的对象，再通过指向这个对象的引用来访问</p>
+<li><p>刷新页面重写方法：</p>
+<p>  onResume()方法,在此方法内进行数据的再次绑定</p>
 </li>
-<li><p>成员内部类是依附外部类而存在的，也就是说，如果要创建成员内部类的对象，前提是必须存在一个外部类的对象。创建成员内部类对象的一般方式如下：</p>
-<pre><code>Outter outter = new Outter();
-Outter.Inner inner = outter.new Inner();
+<li><p>获取下一个Activity传回的数据方法：使用startActivityForResult方法：</p>
+<p>  和调用startActivity方法一样调用此方法，但是参数要多一个requestCode，为自定义数字，为回调时的判断用，在结束新的Activity时要使用setResult方法，参数为第一个自定义的数字（resultCode）和一个Intent（使用putExtra方法传值后），然后在原Activity方法中重写onActivityResult方法，然后在这个方法中获取对应的数据。代码如下：</p>
+<p>  启动新Activity的方法：</p>
+<pre><code>public static void startChangeNameActivity(Activity activity, Context context) {
+    Intent intent = new Intent(context, ChangeNameActivity.class);
+    activity.startActivityForResult(intent, 10);
+
+}
 </code></pre></li>
 </ul>
 </li>
 </ul>
-<ul>
-<li>数据类型：<ul>
-<li>基本数据类型：<ul>
-<li>int float Boolean double shot byte long char</li>
-</ul>
-</li>
-<li>对于基本数据类型，可以直接用==判断是否为相等，每个变量的对比即为其内部的值的对比</li>
-<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="http://www.cnblogs.com/dolphin0520/p/3592500.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>equals()方法：</p>
-<ul>
-<li><p>为Object类中的方法:</p>
-<pre><code>/**
- * Compares this string to the specified object.  The result is {@code*
- * true} if and only if the argument is not {@code null} and is a {@code
- * String} object that represents the same sequence of characters as this
- * object.
- *
- * @param  anObject
- *         The object to compare this {@code String} against
- *
- * @return  {@code true} if the given object represents a {@code String}
- *          equivalent to this string, {@code false} otherwise
- *
- * @see  #compareTo(String)
- * @see  #equalsIgnoreCase(String)
- */
-public boolean equals(Object anObject) {
-    if (this == anObject) {
-        return true;
-    }
-    if (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        int n = value.length;
-        if (n == anotherString.value.length) {
-            char v1[] = value;
-            char v2[] = anotherString.value;
-            int i = 0;
-            while (n-- != 0) {
-                if (v1[i] != v2[i])
-                    return false;
-                i++;
-            }
-            return true;
-        }
-    }
-    return false;
-}
-</code></pre><p>  可以看到，对于在String类中对于equals方法进行了重写，代码逻辑简单，很容易看懂</p>
-</li>
-</ul>
-</li>
-<li><p>instanceof用法：</p>
-<ul>
-<li>instanceof通过返回一个布尔值来指出，这个对象是否是这个特定类或者是它的子类的一个实例。 </li>
-<li>result = object instanceof class         </li>
-</ul>
-</li>
-<li>对象拷贝：<ul>
-<li>分为引用拷贝，浅拷贝，深拷贝</li>
-<li>引用拷贝：直接使用=来给引用对象赋值，是相当于建立了一个相同的的引用，指向同一个对象</li>
-<li>浅拷贝：</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>关于float和double的问题：</p>
-<ul>
-<li>单双精度的区别<br><img src="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg" alt="">        </li>
-<li><p>关于float精度丢失问题，参考<a href="http://blog.csdn.net/bonjean/article/details/51475363" target="_blank" rel="noopener">Java学习_ 基本数据类型_float</a></p>
-</li>
-<li><p>整数是可以被保存为有限的二进制整数的，但是小数不行，有可能出现无限循环的二进制数，所以关于有的小数是可以准确表示的，有的是一个接近的值来存储的。</p>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>    新Activity结束时的方法：
 
+        Intent intent = new Intent();
+        intent.putExtra(&quot;newName&quot;, editChangeName.getText().toString().trim());
+        setResult(RESULT_OK, intent);
+        finish();
+
+    原Activity中重写的方法：
+
+
+            @Override
+            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+             super.onActivityResult(requestCode, resultCode, data);
+
+            if (resultCode == RESULT_OK) {
+
+                switch (requestCode) {
+
+                    case FileUtil.CAMERA_REQUEST:
+                        imgPortrait.setImageBitmap(BitmapFactory.decodeFile(photoPath));
+                        UpLoadHelper.upLoadImgToQiNiu(photoPath, this);
+                        mProgressDialog = new DialogUtil().new NativeProgressDialog();
+                        mProgressDialog
+                                .initDialog(EditDataActivity.this)
+                                .setMessage(&quot;请稍后&quot;)
+                                .showDialog();
+                        hasImg = true;
+                        break;
+                    case FileUtil.ALBUM_REQUEST:
+                        String picturePath = FileUtil.getSelectedPicturePath(data, EditDataActivity.this);
+                        imgPortrait.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                        photoPath = picturePath;
+                        UpLoadHelper.upLoadImgToQiNiu(photoPath, this);
+                        mProgressDialog = new DialogUtil().new NativeProgressDialog();
+                        mProgressDialog
+                                .initDialog(EditDataActivity.this)
+                                .setMessage(&quot;请稍后&quot;)
+                                .showDialog();
+                        hasImg = true;
+                        break;
+                    case 10:
+                        if (resultCode == RESULT_OK) {
+                            String newName=data.getStringExtra(&quot;newName&quot;);
+                            mTxtMineName.setText(newName);
+                            mPresenter.requestUpdateInformation(newName,mineInformationModel.getAvatar(),mineInformationModel.getSex(),mineInformationModel.getBirth());
+                            mineInformationModel.setName(newName);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            }
+
+
++ 日期选择控件：
+
+    使用TimePickerView控件进行日期选择：
+
+    导入依赖：        compile &apos;com.contrarywind:Android-PickerView:3.2.5&apos;
+
+    具体使用：
+
+            TimePickerView timePickerView = new TimePickerView
+                .Builder(EditDataActivity.this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                //设置日期显示格式
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+                //获得对应选择的日期
+                String format = simpleDateFormat.format(date);
+                //TODO：写对应的选择完成后的操作
+            }
+        })
+                //设置显示的列的数量，即日期的精确程度
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .build();
+        timePickerView.show();
+
+拓展：
+
+        Calendar selectedDate = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(2013,1,1);//设置起始年份
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2020,1,1);//设置结束年份
+
+
+        .setCancelText(&quot;取消&quot;)//取消按钮文字
+      .setSubmitText(&quot;确定&quot;)//确认按钮文字
+      .setContentSize(18)//滚轮文字大小
+      .setTitleSize(20)//标题文字大小
+      .setTitleText(&quot;选择时间&quot;)//标题文字
+      .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
+      .isCyclic(true)//是否循环滚动
+      .setTitleColor(Color.BLACK)//标题文字颜色
+      .setSubmitColor(R.color.hui)//确定按钮文字颜色
+      .setCancelColor(R.color.hui)//取消按钮文字颜色
+      .setTitleBgColor(0xFF666666)//标题背景颜色 Night mode
+      .setBgColor(0xFF333333)//滚轮背景颜色 Night mode
+      .setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR) + 20)//默认是1900-2100年
+      .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
+      .setRangDate(startDate,endDate)//起始终止年月日设定
+      .setLabel(&quot;年&quot;,&quot;月&quot;,&quot;日&quot;,&quot;时&quot;,&quot;分&quot;,&quot;秒&quot;)
+      .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+      .isDialog(false)//是否显示为对话框样式
+      .build();
+</code></pre><ul>
+<li><p>工具类模块：</p>
+<ul>
+<li><p>文件工具类（FileUtil）：</p>
+<ul>
+<li><p>动态申请权限：</p>
+<p>  Google将权限分为两类，一类是Normal Permissions，这类权限一般不涉及用户隐私，是不需要用户进行授权的，比如手机震动、访问网络等；另一类是Dangerous Permission，一般是涉及到用户隐私的，需要用户进行授权，比如读取sdcard、访问通讯录等。</p>
+<p>  Normal Permissions：</p>
+<pre><code>ACCESS_LOCATION_EXTRA_COMMANDS
+ACCESS_NETWORK_STATE
+ACCESS_NOTIFICATION_POLICY
+ACCESS_WIFI_STATE
+BLUETOOTH
+BLUETOOTH_ADMIN
+BROADCAST_STICKY
+CHANGE_NETWORK_STATE
+CHANGE_WIFI_MULTICAST_STATE
+CHANGE_WIFI_STATE
+DISABLE_KEYGUARD
+EXPAND_STATUS_BAR
+GET_PACKAGE_SIZE
+INSTALL_SHORTCUT
+INTERNET
+KILL_BACKGROUND_PROCESSES
+MODIFY_AUDIO_SETTINGS
+NFC
+READ_SYNC_SETTINGS
+READ_SYNC_STATS
+RECEIVE_BOOT_COMPLETED
+REORDER_TASKS
+REQUEST_INSTALL_PACKAGES
+SET_ALARM
+SET_TIME_ZONE
+SET_WALLPAPER
+SET_WALLPAPER_HINTS
+TRANSMIT_IR
+UNINSTALL_SHORTCUT
+USE_FINGERPRINT
+VIBRATE
+WAKE_LOCK
+WRITE_SYNC_SETTINGS
+</code></pre><p>Dangerous Permissions:</p>
+<pre><code>  group:android.permission-group.CONTACTS
+permission:android.permission.WRITE_CONTACTS
+permission:android.permission.GET_ACCOUNTS
+permission:android.permission.READ_CONTACTS
+</code></pre><p>  group:android.permission-group.PHONE</p>
+<pre><code>permission:android.permission.READ_CALL_LOG
+permission:android.permission.READ_PHONE_STATE
+permission:android.permission.CALL_PHONE
+permission:android.permission.WRITE_CALL_LOG
+permission:android.permission.USE_SIP
+permission:android.permission.PROCESS_OUTGOING_CALLS
+permission:com.android.voicemail.permission.ADD_VOICEMAIL
+</code></pre><p>  group:android.permission-group.CALENDAR</p>
+<pre><code>permission:android.permission.READ_CALENDAR
+permission:android.permission.WRITE_CALENDAR
+</code></pre><p>  group:android.permission-group.CAMERA</p>
+<pre><code>permission:android.permission.CAMERA
+</code></pre><p>  group:android.permission-group.SENSORS</p>
+<pre><code>permission:android.permission.BODY_SENSORS
+</code></pre><p>  group:android.permission-group.LOCATION</p>
+<pre><code>permission:android.permission.ACCESS_FINE_LOCATION
+permission:android.permission.ACCESS_COARSE_LOCATION
+</code></pre><p>  group:android.permission-group.STORAGE</p>
+<pre><code>permission:android.permission.READ_EXTERNAL_STORAGE
+permission:android.permission.WRITE_EXTERNAL_STORAGE
+</code></pre><p>  group:android.permission-group.MICROPHONE</p>
+<pre><code>permission:android.permission.RECORD_AUDIO
+</code></pre><p>  group:android.permission-group.SMS</p>
+<pre><code>permission:android.permission.READ_SMS
+permission:android.permission.RECEIVE_WAP_PUSH
+permission:android.permission.RECEIVE_MMS
+permission:android.permission.RECEIVE_SMS
+permission:android.permission.SEND_SMS
+permission:android.permission.READ_CELL_BROADCASTS
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    首先要检查权限：
+
+        if (ContextCompat.checkSelfPermission(thisActivity,
+            Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED) {
+        }else{
+            //
+        }
+    此处的checkSelfPermission方法即为检查权限是否开启的方法，然后进行权限请求：
+
+            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+
+
+
+
+
+
+
++ 正则表达式工具类（RegexpUtils）：
+</code></pre>
       
 
       
@@ -308,7 +519,7 @@ public boolean equals(Object anObject) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/19/java基础知识/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/11/22/Android笔记/">展开全文 >></a>
         </p>
       
 
@@ -340,7 +551,7 @@ public boolean equals(Object anObject) {
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
     </nav>
   
 

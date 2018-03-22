@@ -8,15 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>lszr&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东北大学秦皇岛分校16级计科专业学生一枚">
-<meta property="og:type" content="website">
+  <meta name="description" content="title:Python爬虫#Python爬虫实战：  基础爬虫">
+<meta property="og:type" content="article">
 <meta property="og:title" content="lszr&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/03/21/Python爬虫实战/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
-<meta property="og:description" content="东北大学秦皇岛分校16级计科专业学生一枚">
+<meta property="og:description" content="title:Python爬虫#Python爬虫实战：  基础爬虫">
+<meta property="og:updated_time" content="2018-03-21T09:07:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lszr&#39;s blog">
-<meta name="twitter:description" content="东北大学秦皇岛分校16级计科专业学生一枚">
+<meta name="twitter:description" content="title:Python爬虫#Python爬虫实战：  基础爬虫">
   
     <link rel="alternative" href="/atom.xml" title="lszr&#39;s blog" type="application/atom+xml">
   
@@ -152,153 +153,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-java基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Python爬虫实战" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/19/java基础知识/">java基础知识笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/19/java基础知识/" class="archive-article-date">
-  	<time datetime="2018-03-19T08:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#java基础知识</p>
+        <hr>
+<h2 id="title-Python爬虫"><a href="#title-Python爬虫" class="headerlink" title="title:Python爬虫"></a>title:Python爬虫</h2><p>#Python爬虫实战：</p>
 <ul>
-<li><p>类，对象</p>
-<p>  实例化：使用关键字new来创建一个对象。</p>
-<ul>
-<li><p>实例变量</p>
-<p>关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法</p>
-</li>
-<li><p>类变量：</p>
-<p>类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经常被声明为常量，很少单独使用static声明变量。静态变量在程序开始时创建，在程序结束时销毁。</p>
-</li>
-<li><p>final变量：</p>
-<ul>
-<li>不能对已经初始化的变量修改,且作为类成员变量的时候必须被构造函数初始化或者有初值</li>
-<li>对于final修饰的引用变量，如一个对象，对象的指向不能再改变，比如等于重新new一个，但是其指向可以被改变，即此对象的实例变量可以被修改</li>
-<li>匿名内部类中使用的外部局部变量为什么只能是final变量</li>
-<li>参考：<a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>+ final类：不可以被任何类继承且内部类会被被隐式地指定为final方法。
-+ final方法:不可以被子类重写的方法
-+ java方法是值传递
-</code></pre><p>##内部类仍存疑（参考中）</p>
-<ul>
-<li><p>内部类：参考<a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
-<ul>
-<li>成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括private成员和静态成员）。</li>
-<li><p>当成员内部类拥有和外部类同名的成员变量或者方法时，会发生隐藏现象，即默认情况下访问的是成员内部类的成员。如果要访问外部类的同名成员，需要以下面的形式进行访问：</p>
-<p>  外部类.this.成员变量</p>
-<p>  外部类.this.成员方法</p>
-</li>
-<li><p>在外部类中如果要访问成员内部类的成员，必须先创建一个成员内部类的对象，再通过指向这个对象的引用来访问</p>
-</li>
-<li><p>成员内部类是依附外部类而存在的，也就是说，如果要创建成员内部类的对象，前提是必须存在一个外部类的对象。创建成员内部类对象的一般方式如下：</p>
-<pre><code>Outter outter = new Outter();
-Outter.Inner inner = outter.new Inner();
-</code></pre></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>数据类型：<ul>
-<li>基本数据类型：<ul>
-<li>int float Boolean double shot byte long char</li>
-</ul>
-</li>
-<li>对于基本数据类型，可以直接用==判断是否为相等，每个变量的对比即为其内部的值的对比</li>
-<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="http://www.cnblogs.com/dolphin0520/p/3592500.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>equals()方法：</p>
-<ul>
-<li><p>为Object类中的方法:</p>
-<pre><code>/**
- * Compares this string to the specified object.  The result is {@code*
- * true} if and only if the argument is not {@code null} and is a {@code
- * String} object that represents the same sequence of characters as this
- * object.
- *
- * @param  anObject
- *         The object to compare this {@code String} against
- *
- * @return  {@code true} if the given object represents a {@code String}
- *          equivalent to this string, {@code false} otherwise
- *
- * @see  #compareTo(String)
- * @see  #equalsIgnoreCase(String)
- */
-public boolean equals(Object anObject) {
-    if (this == anObject) {
-        return true;
-    }
-    if (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        int n = value.length;
-        if (n == anotherString.value.length) {
-            char v1[] = value;
-            char v2[] = anotherString.value;
-            int i = 0;
-            while (n-- != 0) {
-                if (v1[i] != v2[i])
-                    return false;
-                i++;
-            }
-            return true;
-        }
-    }
-    return false;
-}
-</code></pre><p>  可以看到，对于在String类中对于equals方法进行了重写，代码逻辑简单，很容易看懂</p>
-</li>
-</ul>
-</li>
-<li><p>instanceof用法：</p>
-<ul>
-<li>instanceof通过返回一个布尔值来指出，这个对象是否是这个特定类或者是它的子类的一个实例。 </li>
-<li>result = object instanceof class         </li>
-</ul>
-</li>
-<li>对象拷贝：<ul>
-<li>分为引用拷贝，浅拷贝，深拷贝</li>
-<li>引用拷贝：直接使用=来给引用对象赋值，是相当于建立了一个相同的的引用，指向同一个对象</li>
-<li>浅拷贝：</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>关于float和double的问题：</p>
-<ul>
-<li>单双精度的区别<br><img src="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg" alt="">        </li>
-<li><p>关于float精度丢失问题，参考<a href="http://blog.csdn.net/bonjean/article/details/51475363" target="_blank" rel="noopener">Java学习_ 基本数据类型_float</a></p>
-</li>
-<li><p>整数是可以被保存为有限的二进制整数的，但是小数不行，有可能出现无限循环的二进制数，所以关于有的小数是可以准确表示的，有的是一个接近的值来存储的。</p>
-</li>
-</ul>
-</li>
+<li>基础爬虫</li>
 </ul>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -307,16 +195,75 @@ public boolean equals(Object anObject) {
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/19/java基础知识/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/21/Python爬虫实战/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/19/java基础知识/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java基础知识笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -336,12 +283,14 @@ public boolean equals(Object anObject) {
 
 
 
+  
+  
+  
 
   
+
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+
   
 
 
@@ -364,8 +313,8 @@ public boolean equals(Object anObject) {
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
