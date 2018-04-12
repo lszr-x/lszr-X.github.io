@@ -154,113 +154,145 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-c++笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/11/c++笔记/">C++笔记</a>
+      <a class="article-title" href="/2018/03/19/java基础知识/">java基础知识笔记</a>
     </h1>
   
 
         
-        <a href="/2018/03/11/c++笔记/" class="archive-article-date">
-  	<time datetime="2018-03-11T06:38:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
+        <a href="/2018/03/19/java基础知识/" class="archive-article-date">
+  	<time datetime="2018-03-19T08:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#C++笔记</p>
+        <p>#java基础知识</p>
 <ul>
-<li>位运算</li>
+<li><p>类，对象</p>
+<p>  实例化：使用关键字new来创建一个对象。</p>
+<ul>
+<li><p>实例变量</p>
+<p>关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法</p>
+</li>
+<li><p>类变量：</p>
+<p>类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经常被声明为常量，很少单独使用static声明变量。静态变量在程序开始时创建，在程序结束时销毁。</p>
+</li>
+<li><p>final变量：</p>
+<ul>
+<li>不能对已经初始化的变量修改,且作为类成员变量的时候必须被构造函数初始化或者有初值</li>
+<li>对于final修饰的引用变量，如一个对象，对象的指向不能再改变，比如等于重新new一个，但是其指向可以被改变，即此对象的实例变量可以被修改</li>
+<li>匿名内部类中使用的外部局部变量为什么只能是final变量</li>
+<li>参考：<a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
 </ul>
-<p>或：| 有一个是1就是1<br>且：&amp; 两个都是1才是1<br>异或：^ 相同为0，不同为1</p>
-<ul>
-<li>加法</li>
+</li>
 </ul>
-<p>关于实现使用c++的语法的加法的模拟：</p>
-<p>使用递归求解：要实现三步，</p>
-<p>思路：<br>考虑一个普通的加法计算：5＋17＝22</p>
-<p>_在十进制加法中可以分为如下3步进行：</p>
-<pre><code>1. 忽略进位，只做对应各位数字相加，得到12（个位上5＋7＝12，忽略进位，结果2）；
-2. 记录进位，上一步计算中只有个位数字相加有进位1，进位值为10；
-3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果22。_
-</code></pre><p>_下面考虑二进制数的情况（5＝101，17＝10001）：<br>仍然分3步：</p>
-<pre><code>1. 忽略进位，对应各位数字相加，得到10100；
-2. 记录进位，本例中只有最后一位相加时产生进位1，进位值为10（二进制）；
-3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果10110，正好是十进制数22的二进制表示。_
-</code></pre><p><em>接下来把上述二进制加法3步计算法用位运算替换：<br>    第1步（忽略进位）：0＋0＝0，0＋1＝1，1＋0＝1，1＋1＝0，典型的异或运算。<br>    第2步：很明显，只有1＋1会向前产生进位1，相对于这一数位的进位值为10，而10＝(1&amp;1)&lt;&lt;1。<br>    第3步：将第1步和第2步得到的结果相加，其实又是在重复这2步，直到不再产生进位为止。</em></p>
-<pre><code>int add(int a,int b){  
-if(b == 0) return a;//没有进位时，完成运算，a为最终和。  
-int sum,carry;  
-sum = a ^ b;//没有进位的加法运算  
-carry = (a &amp; b) &lt;&lt; 1;//进位，左移运算。  
-return add(sum , carry);//递归，相加。  
-}  
-</code></pre><p>参考：<a href="">http://blog.csdn.net/u010274071/article/details/14614423</a><br><a href="">https://baike.baidu.com/item/加法/1018876?fr=aladdin
-</a></p>
-<ul>
-<li>阶乘求0个数：</li>
+</li>
 </ul>
-<p>即求对应的n中所有的5的个数，但是需要注意的是，5的次方中有多个5，因此，对于一个数n，需要求出它中5的个数+25的个数+。。。最后即可得所有5的个数，相当于25是在5的时候算了一遍，然后再在25的时候再算一遍，因此，需要把n一直除5求和，最后就是个数。</p>
-<p>参考：<a href="">http://blog.csdn.net/surp2011/article/details/51168272</a></p>
-<p>#STL之vector排序及使用</p>
+<pre><code>+ final类：不可以被任何类继承且内部类会被被隐式地指定为final方法。
++ final方法:不可以被子类重写的方法
++ java方法是值传递
+</code></pre><p>##内部类仍存疑（参考中）</p>
 <ul>
-<li><p>vector的基本使用</p>
+<li><p>内部类：参考<a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
 <ul>
-<li><p>创建：vector<int> vec;</int></p>
+<li>成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括private成员和静态成员）。</li>
+<li><p>当成员内部类拥有和外部类同名的成员变量或者方法时，会发生隐藏现象，即默认情况下访问的是成员内部类的成员。如果要访问外部类的同名成员，需要以下面的形式进行访问：</p>
+<p>  外部类.this.成员变量</p>
+<p>  外部类.this.成员方法</p>
 </li>
-<li><p>尾部插入数字：vec.push_back(a);</p>
+<li><p>在外部类中如果要访问成员内部类的成员，必须先创建一个成员内部类的对象，再通过指向这个对象的引用来访问</p>
 </li>
-<li>使用下标访问元素，cout&lt;&lt;vec[0]&lt;&lt;endl;记住下标是从0开始的。</li>
-<li><p>使用迭代器访问元素：</p>
-<p>  vector<int>::iterator it;</int></p>
-<p>  for(it=vec.begin();it!=vec.end();it++)</p>
-<p>  cout&lt;&lt;*it&lt;&lt;endl;</p>
-</li>
-<li><p>插入元素：    vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;</p>
-</li>
-<li>删除元素：    vec.erase(vec.begin()+2);删除第3个元素，vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始</li>
-<li>向量大小:vec.size();</li>
-<li>清空:vec.clear();</li>
-<li>可以定义结构体（全局），具体参见<a href="">http://blog.csdn.net/duan19920101/article/details/50617190/</a></li>
-<li>算法：<ul>
-<li>使用reverse将元素翻转：<pre><code>#include&lt;algorithm&gt;
-reverse(vec.begin(),vec.end());//将元素翻转，即逆序排列！
+<li><p>成员内部类是依附外部类而存在的，也就是说，如果要创建成员内部类的对象，前提是必须存在一个外部类的对象。创建成员内部类对象的一般方式如下：</p>
+<pre><code>Outter outter = new Outter();
+Outter.Inner inner = outter.new Inner();
 </code></pre></li>
-<li>使用sort排序：<pre><code>#include&lt;algorithm&gt;
-sort(vec.begin(),vec.end());//(默认是按升序排列,即从小到大)
-可以通过重写排序比较函数按照降序比较，如下：
-定义排序比较函数：
-bool Comp(const int &amp;a,const int &amp;b)
-{
-    return a&gt;b;
+</ul>
+</li>
+</ul>
+<ul>
+<li>数据类型：<ul>
+<li>基本数据类型：<ul>
+<li>int float Boolean double shot byte long char</li>
+</ul>
+</li>
+<li>对于基本数据类型，可以直接用==判断是否为相等，每个变量的对比即为其内部的值的对比</li>
+<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="http://www.cnblogs.com/dolphin0520/p/3592500.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>equals()方法：</p>
+<ul>
+<li><p>为Object类中的方法:</p>
+<pre><code>/**
+ * Compares this string to the specified object.  The result is {@code*
+ * true} if and only if the argument is not {@code null} and is a {@code
+ * String} object that represents the same sequence of characters as this
+ * object.
+ *
+ * @param  anObject
+ *         The object to compare this {@code String} against
+ *
+ * @return  {@code true} if the given object represents a {@code String}
+ *          equivalent to this string, {@code false} otherwise
+ *
+ * @see  #compareTo(String)
+ * @see  #equalsIgnoreCase(String)
+ */
+public boolean equals(Object anObject) {
+    if (this == anObject) {
+        return true;
+    }
+    if (anObject instanceof String) {
+        String anotherString = (String)anObject;
+        int n = value.length;
+        if (n == anotherString.value.length) {
+            char v1[] = value;
+            char v2[] = anotherString.value;
+            int i = 0;
+            while (n-- != 0) {
+                if (v1[i] != v2[i])
+                    return false;
+                i++;
+            }
+            return true;
+        }
+    }
+    return false;
 }
-调用时:sort(vec.begin(),vec.end(),Comp)，这样就降序排序。 
-</code></pre></li>
+</code></pre><p>  可以看到，对于在String类中对于equals方法进行了重写，代码逻辑简单，很容易看懂</p>
+</li>
 </ul>
 </li>
+<li><p>instanceof用法：</p>
+<ul>
+<li>instanceof通过返回一个布尔值来指出，这个对象是否是这个特定类或者是它的子类的一个实例。 </li>
+<li>result = object instanceof class         </li>
+</ul>
+</li>
+<li>对象拷贝：<ul>
+<li>分为引用拷贝，浅拷贝，深拷贝</li>
+<li>引用拷贝：直接使用=来给引用对象赋值，是相当于建立了一个相同的的引用，指向同一个对象</li>
+<li>浅拷贝：</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li><p>0与浮点数的比较：设置一个较小的比较对象，使用&lt;=和&gt;=去比较</p>
-<p>  const float EPSINON = 0.000001;</p>
+<li><p>关于float和double的问题：</p>
+<ul>
+<li>单双精度的区别<br><img src="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg" alt="">        </li>
+<li><p>关于float精度丢失问题，参考<a href="http://blog.csdn.net/bonjean/article/details/51475363" target="_blank" rel="noopener">Java学习_ 基本数据类型_float</a></p>
 </li>
-</ul>
-<ul>
-<li><p>set使用：</p>
-<ul>
-<li><p>使用结构体插入时，需要去重写运算符，把结构体的大小比较明确：</p>
-<pre><code>bool operator&lt;(const test &amp; x,const test &amp; y)
-{
-    return x.c&gt;y.c;
-}
-</code></pre></li>
+<li><p>整数是可以被保存为有限的二进制整数的，但是小数不行，有可能出现无限循环的二进制数，所以关于有的小数是可以准确表示的，有的是一个接近的值来存储的。</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -276,7 +308,7 @@ bool Comp(const int &amp;a,const int &amp;b)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/11/c++笔记/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/19/java基础知识/">展开全文 >></a>
         </p>
       
 
@@ -308,7 +340,7 @@ bool Comp(const int &amp;a,const int &amp;b)
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
