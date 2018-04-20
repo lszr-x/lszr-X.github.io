@@ -154,115 +154,15 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-c++笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Python爬虫实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/11/c++笔记/">C++笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/11/c++笔记/" class="archive-article-date">
-  	<time datetime="2018-03-11T06:38:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#C++笔记</p>
+        <hr>
+<h2 id="title-Python爬虫"><a href="#title-Python爬虫" class="headerlink" title="title:Python爬虫"></a>title:Python爬虫</h2><p>#Python爬虫实战：</p>
 <ul>
-<li>位运算</li>
-</ul>
-<p>或：| 有一个是1就是1<br>且：&amp; 两个都是1才是1<br>异或：^ 相同为0，不同为1</p>
-<ul>
-<li>加法</li>
-</ul>
-<p>关于实现使用c++的语法的加法的模拟：</p>
-<p>使用递归求解：要实现三步，</p>
-<p>思路：<br>考虑一个普通的加法计算：5＋17＝22</p>
-<p>_在十进制加法中可以分为如下3步进行：</p>
-<pre><code>1. 忽略进位，只做对应各位数字相加，得到12（个位上5＋7＝12，忽略进位，结果2）；
-2. 记录进位，上一步计算中只有个位数字相加有进位1，进位值为10；
-3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果22。_
-</code></pre><p>_下面考虑二进制数的情况（5＝101，17＝10001）：<br>仍然分3步：</p>
-<pre><code>1. 忽略进位，对应各位数字相加，得到10100；
-2. 记录进位，本例中只有最后一位相加时产生进位1，进位值为10（二进制）；
-3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果10110，正好是十进制数22的二进制表示。_
-</code></pre><p><em>接下来把上述二进制加法3步计算法用位运算替换：<br>    第1步（忽略进位）：0＋0＝0，0＋1＝1，1＋0＝1，1＋1＝0，典型的异或运算。<br>    第2步：很明显，只有1＋1会向前产生进位1，相对于这一数位的进位值为10，而10＝(1&amp;1)&lt;&lt;1。<br>    第3步：将第1步和第2步得到的结果相加，其实又是在重复这2步，直到不再产生进位为止。</em></p>
-<pre><code>int add(int a,int b){  
-if(b == 0) return a;//没有进位时，完成运算，a为最终和。  
-int sum,carry;  
-sum = a ^ b;//没有进位的加法运算  
-carry = (a &amp; b) &lt;&lt; 1;//进位，左移运算。  
-return add(sum , carry);//递归，相加。  
-}  
-</code></pre><p>参考：<a href="">http://blog.csdn.net/u010274071/article/details/14614423</a><br><a href="">https://baike.baidu.com/item/加法/1018876?fr=aladdin
-</a></p>
-<ul>
-<li>阶乘求0个数：</li>
-</ul>
-<p>即求对应的n中所有的5的个数，但是需要注意的是，5的次方中有多个5，因此，对于一个数n，需要求出它中5的个数+25的个数+。。。最后即可得所有5的个数，相当于25是在5的时候算了一遍，然后再在25的时候再算一遍，因此，需要把n一直除5求和，最后就是个数。</p>
-<p>参考：<a href="">http://blog.csdn.net/surp2011/article/details/51168272</a></p>
-<p>#STL之vector排序及使用</p>
-<ul>
-<li><p>vector的基本使用</p>
-<ul>
-<li><p>创建：vector<int> vec;</int></p>
-</li>
-<li><p>尾部插入数字：vec.push_back(a);</p>
-</li>
-<li>使用下标访问元素，cout&lt;&lt;vec[0]&lt;&lt;endl;记住下标是从0开始的。</li>
-<li><p>使用迭代器访问元素：</p>
-<p>  vector<int>::iterator it;</int></p>
-<p>  for(it=vec.begin();it!=vec.end();it++)</p>
-<p>  cout&lt;&lt;*it&lt;&lt;endl;</p>
-</li>
-<li><p>插入元素：    vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;</p>
-</li>
-<li>删除元素：    vec.erase(vec.begin()+2);删除第3个元素，vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始</li>
-<li>向量大小:vec.size();</li>
-<li>清空:vec.clear();</li>
-<li>可以定义结构体（全局），具体参见<a href="">http://blog.csdn.net/duan19920101/article/details/50617190/</a></li>
-<li>算法：<ul>
-<li>使用reverse将元素翻转：<pre><code>#include&lt;algorithm&gt;
-reverse(vec.begin(),vec.end());//将元素翻转，即逆序排列！
-</code></pre></li>
-<li>使用sort排序：<pre><code>#include&lt;algorithm&gt;
-sort(vec.begin(),vec.end());//(默认是按升序排列,即从小到大)
-可以通过重写排序比较函数按照降序比较，如下：
-定义排序比较函数：
-bool Comp(const int &amp;a,const int &amp;b)
-{
-    return a&gt;b;
-}
-调用时:sort(vec.begin(),vec.end(),Comp)，这样就降序排序。 
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>0与浮点数的比较：设置一个较小的比较对象，使用&lt;=和&gt;=去比较</p>
-<p>  const float EPSINON = 0.000001;</p>
-</li>
-</ul>
-<ul>
-<li><p>set使用：</p>
-<ul>
-<li><p>使用结构体插入时，需要去重写运算符，把结构体的大小比较明确：</p>
-<pre><code>bool operator&lt;(const test &amp; x,const test &amp; y)
-{
-    return x.c&gt;y.c;
-}
-</code></pre></li>
-</ul>
-</li>
+<li>基础爬虫</li>
 </ul>
 
       
@@ -276,7 +176,7 @@ bool Comp(const int &amp;a,const int &amp;b)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/11/c++笔记/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/21/Python爬虫实战/">展开全文 >></a>
         </p>
       
 
@@ -308,7 +208,7 @@ bool Comp(const int &amp;a,const int &amp;b)
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 

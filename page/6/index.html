@@ -154,82 +154,118 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python3笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-c++笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/30/python3笔记/">Android笔记</a>
+      <a class="article-title" href="/2018/03/11/c++笔记/">C++笔记</a>
     </h1>
   
 
         
-        <a href="/2017/11/30/python3笔记/" class="archive-article-date">
-  	<time datetime="2017-11-30T13:03:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
+        <a href="/2018/03/11/c++笔记/" class="archive-article-date">
+  	<time datetime="2018-03-11T06:38:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#python3笔记总结</p>
-<p>##2017-11-30</p>
+        <p>#C++笔记</p>
 <ul>
-<li><p>find函数</p>
-<pre><code>参数（要查找字符串，查找起始位置（从0开始））
-调用方法：被查找字符串.find()
-返回值：查找到的第一个符合的字符串
-例子：
-</code></pre></li>
+<li>位运算</li>
 </ul>
-<pre><code>解释：查找a字符串中所有的b字符串，并打印其起始位置
-</code></pre><ul>
-<li><p>count函数</p>
-<pre><code>参数：（要查询的字符串）
-调用方法：被查找字符串.find()
-返回值：要查找字符串在被查找字符串中出现的次数
-</code></pre></li>
-</ul>
-<p>##2017-12-02</p>
+<p>或：| 有一个是1就是1<br>且：&amp; 两个都是1才是1<br>异或：^ 相同为0，不同为1</p>
 <ul>
-<li><p>替换一个字符串中的字符方法</p>
-<pre><code>使用string和list之间的转换，把string先转换成list，然后进行替换或者改变，然后
-把list再转换成string
-如下：
-</code></pre><p>  <img src="图片/Python3-2017-12-02.png" alt=""></p>
-<pre><code>使用如上方法，最后的join方法即为重新转化的方法
-</code></pre></li>
-<li><p>生成一个全排列字典的方法</p>
-<pre><code>import itertools
-v = itertools.product(&apos;ACGT&apos;, repeat=x)
-C = {}
-for i in v:
-    C[&apos;&apos;.join(i)] = 0
-如上，即导入itertools包后使用一个字典来储存,x为全排列的位数，前面是内容，key值
-为全排列的内容，val为0
-</code></pre></li>
-<li><p>count函数使用注意：</p>
-<pre><code>count函数在使用时只能返回不重复的子串数量，不能返回有重复的子串数量，需要自己写
-函数实现，如下        
-</code></pre><p>  <img src="图片/Python3-2017-12-02_count函数.png" alt=""></p>
-<pre><code>如图，返回值为str1在str2中的数目（有重复）
-例如：aa在aaa中数量为2（有重复），数量为1（无重复）
-</code></pre></li>
-<li><p>字符串切片方法总结</p>
-<pre><code>str[::-1}
-</code></pre></li>
+<li>加法</li>
 </ul>
-<p>##2017-12-09</p>
+<p>关于实现使用c++的语法的加法的模拟：</p>
+<p>使用递归求解：要实现三步，</p>
+<p>思路：<br>考虑一个普通的加法计算：5＋17＝22</p>
+<p>_在十进制加法中可以分为如下3步进行：</p>
+<pre><code>1. 忽略进位，只做对应各位数字相加，得到12（个位上5＋7＝12，忽略进位，结果2）；
+2. 记录进位，上一步计算中只有个位数字相加有进位1，进位值为10；
+3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果22。_
+</code></pre><p>_下面考虑二进制数的情况（5＝101，17＝10001）：<br>仍然分3步：</p>
+<pre><code>1. 忽略进位，对应各位数字相加，得到10100；
+2. 记录进位，本例中只有最后一位相加时产生进位1，进位值为10（二进制）；
+3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果10110，正好是十进制数22的二进制表示。_
+</code></pre><p><em>接下来把上述二进制加法3步计算法用位运算替换：<br>    第1步（忽略进位）：0＋0＝0，0＋1＝1，1＋0＝1，1＋1＝0，典型的异或运算。<br>    第2步：很明显，只有1＋1会向前产生进位1，相对于这一数位的进位值为10，而10＝(1&amp;1)&lt;&lt;1。<br>    第3步：将第1步和第2步得到的结果相加，其实又是在重复这2步，直到不再产生进位为止。</em></p>
+<pre><code>int add(int a,int b){  
+if(b == 0) return a;//没有进位时，完成运算，a为最终和。  
+int sum,carry;  
+sum = a ^ b;//没有进位的加法运算  
+carry = (a &amp; b) &lt;&lt; 1;//进位，左移运算。  
+return add(sum , carry);//递归，相加。  
+}  
+</code></pre><p>参考：<a href="">http://blog.csdn.net/u010274071/article/details/14614423</a><br><a href="">https://baike.baidu.com/item/加法/1018876?fr=aladdin
+</a></p>
 <ul>
-<li><p>range函数总结：</p>
-<p>  使用方法<br>  range（a，b，c）<br>  参数解释：a和b使起始和终止的区间位置，[a,b)这样的区间，a不填默认是0，c是增量的大小，不填默认是1</p>
+<li>阶乘求0个数：</li>
+</ul>
+<p>即求对应的n中所有的5的个数，但是需要注意的是，5的次方中有多个5，因此，对于一个数n，需要求出它中5的个数+25的个数+。。。最后即可得所有5的个数，相当于25是在5的时候算了一遍，然后再在25的时候再算一遍，因此，需要把n一直除5求和，最后就是个数。</p>
+<p>参考：<a href="">http://blog.csdn.net/surp2011/article/details/51168272</a></p>
+<p>#STL之vector排序及使用</p>
+<ul>
+<li><p>vector的基本使用</p>
+<ul>
+<li><p>创建：vector<int> vec;</int></p>
 </li>
-<li><p>list排序函数：</p>
-<p>  使用方法：<br>  list.sort()        #永久排序<br>  sorted（list)        #返回排序结果，不改变序列的值</p>
+<li><p>尾部插入数字：vec.push_back(a);</p>
+</li>
+<li>使用下标访问元素，cout&lt;&lt;vec[0]&lt;&lt;endl;记住下标是从0开始的。</li>
+<li><p>使用迭代器访问元素：</p>
+<p>  vector<int>::iterator it;</int></p>
+<p>  for(it=vec.begin();it!=vec.end();it++)</p>
+<p>  cout&lt;&lt;*it&lt;&lt;endl;</p>
+</li>
+<li><p>插入元素：    vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;</p>
+</li>
+<li>删除元素：    vec.erase(vec.begin()+2);删除第3个元素，vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始</li>
+<li>向量大小:vec.size();</li>
+<li>清空:vec.clear();</li>
+<li>可以定义结构体（全局），具体参见<a href="">http://blog.csdn.net/duan19920101/article/details/50617190/</a></li>
+<li>算法：<ul>
+<li>使用reverse将元素翻转：<pre><code>#include&lt;algorithm&gt;
+reverse(vec.begin(),vec.end());//将元素翻转，即逆序排列！
+</code></pre></li>
+<li>使用sort排序：<pre><code>#include&lt;algorithm&gt;
+sort(vec.begin(),vec.end());//(默认是按升序排列,即从小到大)
+可以通过重写排序比较函数按照降序比较，如下：
+定义排序比较函数：
+bool Comp(const int &amp;a,const int &amp;b)
+{
+    return a&gt;b;
+}
+调用时:sort(vec.begin(),vec.end(),Comp)，这样就降序排序。 
+</code></pre></li>
+</ul>
 </li>
 </ul>
+</li>
+</ul>
+<ul>
+<li><p>0与浮点数的比较：设置一个较小的比较对象，使用&lt;=和&gt;=去比较</p>
+<p>  const float EPSINON = 0.000001;</p>
+</li>
+</ul>
+<ul>
+<li><p>set使用：</p>
+<ul>
+<li><p>使用结构体插入时，需要去重写运算符，把结构体的大小比较明确：</p>
+<pre><code>bool operator&lt;(const test &amp; x,const test &amp; y)
+{
+    return x.c&gt;y.c;
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p>###int与string<br><img src="http://p34is8180.bkt.clouddn.com/18-4-14/38899704.jpg" alt=""></p>
+<p><img src="http://p34is8180.bkt.clouddn.com/18-4-14/32382841.jpg" alt=""></p>
 
       
 
@@ -242,7 +278,7 @@ for i in v:
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/30/python3笔记/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/11/c++笔记/">展开全文 >></a>
         </p>
       
 
@@ -274,7 +310,7 @@ for i in v:
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
 
