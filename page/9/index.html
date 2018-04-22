@@ -154,378 +154,118 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Android笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-c++笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/22/Android笔记/">Android笔记第一版</a>
+      <a class="article-title" href="/2018/03/11/c++笔记/">C++笔记</a>
     </h1>
   
 
         
-        <a href="/2017/11/22/Android笔记/" class="archive-article-date">
-  	<time datetime="2017-11-21T16:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
+        <a href="/2018/03/11/c++笔记/" class="archive-article-date">
+  	<time datetime="2018-03-11T06:38:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="笔记第一版"><a href="#笔记第一版" class="headerlink" title="笔记第一版"></a>笔记第一版</h1><h2 id="2017-11-21"><a href="#2017-11-21" class="headerlink" title="2017-11-21"></a>2017-11-21</h2><h3 id="Scrollview嵌套问题"><a href="#Scrollview嵌套问题" class="headerlink" title="Scrollview嵌套问题"></a>Scrollview嵌套问题</h3><pre><code>Scroview内部嵌套控件时只能嵌套单个，可以把内部多个控件用LinearLayout或者Relativelayout包含起来
-</code></pre><h3 id="Nestedscroview嵌套Recylerview问题"><a href="#Nestedscroview嵌套Recylerview问题" class="headerlink" title="Nestedscroview嵌套Recylerview问题"></a>Nestedscroview嵌套Recylerview问题</h3><pre><code>recylerviewTeamMember.setNestedScrollingEnabled(false);
-可以解决问题，但是注意item的最外层控件的height要是wrap_content，不然不会显示第二项
-</code></pre><p>##2017-11-27</p>
-<h3 id="TooBarActivity中改变样式的方法"><a href="#TooBarActivity中改变样式的方法" class="headerlink" title="TooBarActivity中改变样式的方法"></a>TooBarActivity中改变样式的方法</h3><pre><code>布局文件中添加一个width为0的TextView，然后添加对应的set方法，在继承的activity文件
-中写一个initTitle方法，对于此方法，使用findViewById时要提前调用getToolBar方法然
-后再调用findViewById方法
-然后后面点击事件一般正常使用即可
-</code></pre><h3 id="关于Activity退出相关事宜（singleTask"><a href="#关于Activity退出相关事宜（singleTask" class="headerlink" title="关于Activity退出相关事宜（singleTask)"></a>关于Activity退出相关事宜（singleTask)</h3><pre><code>方法一：
-它的功能就是
-如果要启动的Activity不在，就创建新的然后放到栈顶。
-如果要启动的Activity已经在栈顶，就跟singleTop模式一样。
-如果要启动的Activity已经在于栈中，就会干掉这个Activty上面的所有其他Activty。
-
-举个栗子：
-1.A-B-C-D------E
-A-B-C-D-E
-
-2.A-B-C-D------D
-A-B-C-D------D
-
-3.A-B-C-D------B
-就变成
-A-B
-
-（作者：eiun
-链接：http://www.jianshu.com/p/5ecf6955dac8
-來源：简书）
-</code></pre><p>#</p>
-<pre><code>方法二：使用静态变量：
-在 ActivityA 里面设置一个静态的变量instance,初始化为this
-在 ActivityB 里面, ActivityA.instance.finish();（未尝试）
-具体实现例子见：http://blog.sina.com.cn/s/blog_6e334dc701018m2v.html
-</code></pre><h3 id="EditText光标位置问题"><a href="#EditText光标位置问题" class="headerlink" title="EditText光标位置问题"></a>EditText光标位置问题</h3><pre><code>当EditText使用时，如果height高于textSize时，光标默认居中，需要设置
-    android:gravity=&quot;start&quot;
-使光标位于开头（剩余属性未尝试）
-</code></pre><h3 id="inflate初步接触"><a href="#inflate初步接触" class="headerlink" title="inflate初步接触"></a>inflate初步接触</h3><pre><code>使用：
-可以在一个java文件中查找xml布局文件，从而达到在不同的java文件中使用xml布局文件中的
-id的效果，第一次实际使用时在AlertDialog中自定义布局文件以后，要绑定不同控件的id，
-直接使用findViewById会闪退，所以要用inflate先查找到xml文件，然后再调用，例子如
-下：
-</code></pre><p>##2017-12-10</p>
-<p>###GET网络请求</p>
-<blockquote>
-<p>使用retrofit框架还是有点不熟：</p>
-</blockquote>
+        <p>#C++笔记</p>
 <ul>
-<li>在写response的时候，要能符合它的规范和字段，比如说使用List，使用时要用list.get(i)来获取List对象的item</li>
+<li>位运算</li>
 </ul>
-<p>##2017-12-11</p>
-<p>###intent传递int值</p>
-<blockquote>
-<p>和使用intent传递string类型有所不同</p>
-</blockquote>
+<p>或：| 有一个是1就是1<br>且：&amp; 两个都是1才是1<br>异或：^ 相同为0，不同为1</p>
 <ul>
-<li>传递string类型时</li>
+<li>加法</li>
 </ul>
-<p>首先用原intent对象去putExtra(“keyString”,T)<br>在接收端去用intent对象使用getIntent()<br>然后令string类型的变量=intent.getStringExtra(“keyString”)即可</p>
+<p>关于实现使用c++的语法的加法的模拟：</p>
+<p>使用递归求解：要实现三步，</p>
+<p>思路：<br>考虑一个普通的加法计算：5＋17＝22</p>
+<p>_在十进制加法中可以分为如下3步进行：</p>
+<pre><code>1. 忽略进位，只做对应各位数字相加，得到12（个位上5＋7＝12，忽略进位，结果2）；
+2. 记录进位，上一步计算中只有个位数字相加有进位1，进位值为10；
+3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果22。_
+</code></pre><p>_下面考虑二进制数的情况（5＝101，17＝10001）：<br>仍然分3步：</p>
+<pre><code>1. 忽略进位，对应各位数字相加，得到10100；
+2. 记录进位，本例中只有最后一位相加时产生进位1，进位值为10（二进制）；
+3. 按照第1步中的方法将进位值与第1步结果相加，得到最终结果10110，正好是十进制数22的二进制表示。_
+</code></pre><p><em>接下来把上述二进制加法3步计算法用位运算替换：<br>    第1步（忽略进位）：0＋0＝0，0＋1＝1，1＋0＝1，1＋1＝0，典型的异或运算。<br>    第2步：很明显，只有1＋1会向前产生进位1，相对于这一数位的进位值为10，而10＝(1&amp;1)&lt;&lt;1。<br>    第3步：将第1步和第2步得到的结果相加，其实又是在重复这2步，直到不再产生进位为止。</em></p>
+<pre><code>int add(int a,int b){  
+if(b == 0) return a;//没有进位时，完成运算，a为最终和。  
+int sum,carry;  
+sum = a ^ b;//没有进位的加法运算  
+carry = (a &amp; b) &lt;&lt; 1;//进位，左移运算。  
+return add(sum , carry);//递归，相加。  
+}  
+</code></pre><p>参考：<a href="">http://blog.csdn.net/u010274071/article/details/14614423</a><br><a href="">https://baike.baidu.com/item/加法/1018876?fr=aladdin
+</a></p>
 <ul>
-<li>传递int类型数据时</li>
+<li>阶乘求0个数：</li>
 </ul>
-<p>最后获得数据的时候要调用这个方法intent.getExtras().getInt(“keyString”);</p>
-<pre><code>否则数据会变成0，在直接使用getIntExtra的时候？存疑
-</code></pre><p>getIntExtra方法的第二个参数的含义是什么？</p>
-<p>##2017-12-13</p>
-<p>###使用intent在Activity和fragment之间进行传递</p>
-<blockquote>
-<p>传递普通的单一类型很简单，按照正常的putExtra就可以</p>
-</blockquote>
+<p>即求对应的n中所有的5的个数，但是需要注意的是，5的次方中有多个5，因此，对于一个数n，需要求出它中5的个数+25的个数+。。。最后即可得所有5的个数，相当于25是在5的时候算了一遍，然后再在25的时候再算一遍，因此，需要把n一直除5求和，最后就是个数。</p>
+<p>参考：<a href="">http://blog.csdn.net/surp2011/article/details/51168272</a></p>
+<p>#STL之vector排序及使用</p>
 <ul>
-<li>传递类型的集合的时候</li>
-</ul>
-<p>第一种方法：</p>
-<p>一个一个值去putExtra()，因为类似哈希的传值方式，所以可以使用这种方式进行传值，但是<br>过于繁琐</p>
-<p>第二种方法：</p>
+<li><p>vector的基本使用</p>
 <ul>
-<li>使用Bundle去传值：</li>
-</ul>
-<p>用Bundle的实例化对象去调用putString()方法，然后把所有变量都与<br>Bundle的对象进行类似哈希的绑定（与第一种方法类似），然后调用intent的putExtras()<br>的方法，在接收时，先接收intent的getExtras()方法，然后再调用Bundle的get系列方法</p>
-<p>第三种方法：</p>
-<ul>
-<li>使用传递对象的方法：</li>
-</ul>
-<p>使用intent传递对象，和传递String类型的值在用法上区别不大，但是<br>需要对传递的对象的model类继承接口，有两种接口：</p>
-<blockquote>
-</blockquote>
-<h2 id="2017-12-14"><a href="#2017-12-14" class="headerlink" title="2017-12-14"></a>2017-12-14</h2><ul>
-<li>判断字符串是否为空的方法：</li>
-</ul>
-<blockquote>
-<p>字符串为null的时候使用equals的方法会报错（尚未实验），所以一般判断是否为空的时候要先判断是否为null，然后再看是否为空字符串，即：</p>
-</blockquote>
-<pre><code>if (string==null||string.length()&lt;=0)
-</code></pre><p>且前后顺序不能乱。</p>
-<p>##2018-3-13</p>
-<p>###TaskGo项目知识点总结</p>
-<ul>
-<li><p>mine模块：</p>
-<ul>
-<li>圆形头像:</li>
-</ul>
-<p>使用如下控件为圆形头像，和正常使用imageView没有区别，一样使用就可以</p>
-<pre><code>de.hdodenhof.circleimageview.CircleImageView
-</code></pre><ul>
-<li><p>加载网络外链图片：</p>
-<pre><code>Glide
-    .with(MineFragment.this)
-    .load(mineInformationModel.getAvatar())
-    .into(imgPortrait);
-</code></pre><p>  with后加当前活动的context，load参数为外链地址，into参数为加载到的控件。</p>
+<li><p>创建：vector<int> vec;</int></p>
 </li>
-<li><p>刷新页面重写方法：</p>
-<p>  onResume()方法,在此方法内进行数据的再次绑定</p>
+<li><p>尾部插入数字：vec.push_back(a);</p>
 </li>
-<li><p>获取下一个Activity传回的数据方法：使用startActivityForResult方法：</p>
-<p>  和调用startActivity方法一样调用此方法，但是参数要多一个requestCode，为自定义数字，为回调时的判断用，在结束新的Activity时要使用setResult方法，参数为第一个自定义的数字（resultCode）和一个Intent（使用putExtra方法传值后），然后在原Activity方法中重写onActivityResult方法，然后在这个方法中获取对应的数据。代码如下：</p>
-<p>  启动新Activity的方法：</p>
-<pre><code>public static void startChangeNameActivity(Activity activity, Context context) {
-    Intent intent = new Intent(context, ChangeNameActivity.class);
-    activity.startActivityForResult(intent, 10);
-
+<li>使用下标访问元素，cout&lt;&lt;vec[0]&lt;&lt;endl;记住下标是从0开始的。</li>
+<li><p>使用迭代器访问元素：</p>
+<p>  vector<int>::iterator it;</int></p>
+<p>  for(it=vec.begin();it!=vec.end();it++)</p>
+<p>  cout&lt;&lt;*it&lt;&lt;endl;</p>
+</li>
+<li><p>插入元素：    vec.insert(vec.begin()+i,a);在第i+1个元素前面插入a;</p>
+</li>
+<li>删除元素：    vec.erase(vec.begin()+2);删除第3个元素，vec.erase(vec.begin()+i,vec.end()+j);删除区间[i,j-1];区间从0开始</li>
+<li>向量大小:vec.size();</li>
+<li>清空:vec.clear();</li>
+<li>可以定义结构体（全局），具体参见<a href="">http://blog.csdn.net/duan19920101/article/details/50617190/</a></li>
+<li>算法：<ul>
+<li>使用reverse将元素翻转：<pre><code>#include&lt;algorithm&gt;
+reverse(vec.begin(),vec.end());//将元素翻转，即逆序排列！
+</code></pre></li>
+<li>使用sort排序：<pre><code>#include&lt;algorithm&gt;
+sort(vec.begin(),vec.end());//(默认是按升序排列,即从小到大)
+可以通过重写排序比较函数按照降序比较，如下：
+定义排序比较函数：
+bool Comp(const int &amp;a,const int &amp;b)
+{
+    return a&gt;b;
+}
+调用时:sort(vec.begin(),vec.end(),Comp)，这样就降序排序。 
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>0与浮点数的比较：设置一个较小的比较对象，使用&lt;=和&gt;=去比较</p>
+<p>  const float EPSINON = 0.000001;</p>
+</li>
+</ul>
+<ul>
+<li><p>set使用：</p>
+<ul>
+<li><p>使用结构体插入时，需要去重写运算符，把结构体的大小比较明确：</p>
+<pre><code>bool operator&lt;(const test &amp; x,const test &amp; y)
+{
+    return x.c&gt;y.c;
 }
 </code></pre></li>
 </ul>
 </li>
 </ul>
-<pre><code>    新Activity结束时的方法：
-
-        Intent intent = new Intent();
-        intent.putExtra(&quot;newName&quot;, editChangeName.getText().toString().trim());
-        setResult(RESULT_OK, intent);
-        finish();
-
-    原Activity中重写的方法：
-
-
-            @Override
-            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-             super.onActivityResult(requestCode, resultCode, data);
-
-            if (resultCode == RESULT_OK) {
-
-                switch (requestCode) {
-
-                    case FileUtil.CAMERA_REQUEST:
-                        imgPortrait.setImageBitmap(BitmapFactory.decodeFile(photoPath));
-                        UpLoadHelper.upLoadImgToQiNiu(photoPath, this);
-                        mProgressDialog = new DialogUtil().new NativeProgressDialog();
-                        mProgressDialog
-                                .initDialog(EditDataActivity.this)
-                                .setMessage(&quot;请稍后&quot;)
-                                .showDialog();
-                        hasImg = true;
-                        break;
-                    case FileUtil.ALBUM_REQUEST:
-                        String picturePath = FileUtil.getSelectedPicturePath(data, EditDataActivity.this);
-                        imgPortrait.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                        photoPath = picturePath;
-                        UpLoadHelper.upLoadImgToQiNiu(photoPath, this);
-                        mProgressDialog = new DialogUtil().new NativeProgressDialog();
-                        mProgressDialog
-                                .initDialog(EditDataActivity.this)
-                                .setMessage(&quot;请稍后&quot;)
-                                .showDialog();
-                        hasImg = true;
-                        break;
-                    case 10:
-                        if (resultCode == RESULT_OK) {
-                            String newName=data.getStringExtra(&quot;newName&quot;);
-                            mTxtMineName.setText(newName);
-                            mPresenter.requestUpdateInformation(newName,mineInformationModel.getAvatar(),mineInformationModel.getSex(),mineInformationModel.getBirth());
-                            mineInformationModel.setName(newName);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-            }
-
-
-+ 日期选择控件：
-
-    使用TimePickerView控件进行日期选择：
-
-    导入依赖：        compile &apos;com.contrarywind:Android-PickerView:3.2.5&apos;
-
-    具体使用：
-
-            TimePickerView timePickerView = new TimePickerView
-                .Builder(EditDataActivity.this, new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                //设置日期显示格式
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
-                //获得对应选择的日期
-                String format = simpleDateFormat.format(date);
-                //TODO：写对应的选择完成后的操作
-            }
-        })
-                //设置显示的列的数量，即日期的精确程度
-                .setType(new boolean[]{true, true, true, false, false, false})
-                .build();
-        timePickerView.show();
-
-拓展：
-
-        Calendar selectedDate = Calendar.getInstance();
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(2013,1,1);//设置起始年份
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(2020,1,1);//设置结束年份
-
-
-        .setCancelText(&quot;取消&quot;)//取消按钮文字
-      .setSubmitText(&quot;确定&quot;)//确认按钮文字
-      .setContentSize(18)//滚轮文字大小
-      .setTitleSize(20)//标题文字大小
-      .setTitleText(&quot;选择时间&quot;)//标题文字
-      .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
-      .isCyclic(true)//是否循环滚动
-      .setTitleColor(Color.BLACK)//标题文字颜色
-      .setSubmitColor(R.color.hui)//确定按钮文字颜色
-      .setCancelColor(R.color.hui)//取消按钮文字颜色
-      .setTitleBgColor(0xFF666666)//标题背景颜色 Night mode
-      .setBgColor(0xFF333333)//滚轮背景颜色 Night mode
-      .setRange(calendar.get(Calendar.YEAR) - 20, calendar.get(Calendar.YEAR) + 20)//默认是1900-2100年
-      .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
-      .setRangDate(startDate,endDate)//起始终止年月日设定
-      .setLabel(&quot;年&quot;,&quot;月&quot;,&quot;日&quot;,&quot;时&quot;,&quot;分&quot;,&quot;秒&quot;)
-      .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-      .isDialog(false)//是否显示为对话框样式
-      .build();
-</code></pre><ul>
-<li><p>工具类模块：</p>
-<ul>
-<li><p>文件工具类（FileUtil）：</p>
-<ul>
-<li><p>动态申请权限：</p>
-<p>  Google将权限分为两类，一类是Normal Permissions，这类权限一般不涉及用户隐私，是不需要用户进行授权的，比如手机震动、访问网络等；另一类是Dangerous Permission，一般是涉及到用户隐私的，需要用户进行授权，比如读取sdcard、访问通讯录等。</p>
-<p>  Normal Permissions：</p>
-<pre><code>ACCESS_LOCATION_EXTRA_COMMANDS
-ACCESS_NETWORK_STATE
-ACCESS_NOTIFICATION_POLICY
-ACCESS_WIFI_STATE
-BLUETOOTH
-BLUETOOTH_ADMIN
-BROADCAST_STICKY
-CHANGE_NETWORK_STATE
-CHANGE_WIFI_MULTICAST_STATE
-CHANGE_WIFI_STATE
-DISABLE_KEYGUARD
-EXPAND_STATUS_BAR
-GET_PACKAGE_SIZE
-INSTALL_SHORTCUT
-INTERNET
-KILL_BACKGROUND_PROCESSES
-MODIFY_AUDIO_SETTINGS
-NFC
-READ_SYNC_SETTINGS
-READ_SYNC_STATS
-RECEIVE_BOOT_COMPLETED
-REORDER_TASKS
-REQUEST_INSTALL_PACKAGES
-SET_ALARM
-SET_TIME_ZONE
-SET_WALLPAPER
-SET_WALLPAPER_HINTS
-TRANSMIT_IR
-UNINSTALL_SHORTCUT
-USE_FINGERPRINT
-VIBRATE
-WAKE_LOCK
-WRITE_SYNC_SETTINGS
-</code></pre><p>Dangerous Permissions:</p>
-<pre><code>  group:android.permission-group.CONTACTS
-permission:android.permission.WRITE_CONTACTS
-permission:android.permission.GET_ACCOUNTS
-permission:android.permission.READ_CONTACTS
-</code></pre><p>  group:android.permission-group.PHONE</p>
-<pre><code>permission:android.permission.READ_CALL_LOG
-permission:android.permission.READ_PHONE_STATE
-permission:android.permission.CALL_PHONE
-permission:android.permission.WRITE_CALL_LOG
-permission:android.permission.USE_SIP
-permission:android.permission.PROCESS_OUTGOING_CALLS
-permission:com.android.voicemail.permission.ADD_VOICEMAIL
-</code></pre><p>  group:android.permission-group.CALENDAR</p>
-<pre><code>permission:android.permission.READ_CALENDAR
-permission:android.permission.WRITE_CALENDAR
-</code></pre><p>  group:android.permission-group.CAMERA</p>
-<pre><code>permission:android.permission.CAMERA
-</code></pre><p>  group:android.permission-group.SENSORS</p>
-<pre><code>permission:android.permission.BODY_SENSORS
-</code></pre><p>  group:android.permission-group.LOCATION</p>
-<pre><code>permission:android.permission.ACCESS_FINE_LOCATION
-permission:android.permission.ACCESS_COARSE_LOCATION
-</code></pre><p>  group:android.permission-group.STORAGE</p>
-<pre><code>permission:android.permission.READ_EXTERNAL_STORAGE
-permission:android.permission.WRITE_EXTERNAL_STORAGE
-</code></pre><p>  group:android.permission-group.MICROPHONE</p>
-<pre><code>permission:android.permission.RECORD_AUDIO
-</code></pre><p>  group:android.permission-group.SMS</p>
-<pre><code>permission:android.permission.READ_SMS
-permission:android.permission.RECEIVE_WAP_PUSH
-permission:android.permission.RECEIVE_MMS
-permission:android.permission.RECEIVE_SMS
-permission:android.permission.SEND_SMS
-permission:android.permission.READ_CELL_BROADCASTS
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>首先要检查权限：
-
-    if (ContextCompat.checkSelfPermission(thisActivity,
-        Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED) {
-    }else{
-        //
-    }
-此处的checkSelfPermission方法即为检查权限是否开启的方法，然后进行权限请求：
-
-        ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
-</code></pre><p>##20180411</p>
-<ul>
-<li><p>Android文件相关：</p>
-<ul>
-<li><p>File类：</p>
-<ul>
-<li>构造方法：参数为文件路径</li>
-<li>手机存储空间根目录：Environment.getExternalStorageDirectory().getCanonicalFile()</li>
-<li><p>创建新文件方法，首先判断是否有这个文件，如果没有，调用createNewFile()方法创建文件，或者调用mkdirs()方法创建目录：</p>
-<pre><code>mRecorderFile = new File(Environment.
-                            getExternalStorageDirectory().
-                            getCanonicalFile() + 
-                            &quot;/projectTest/sound.amr&quot;);
-           if(!mRecorderFile.exists()){
-               mRecorderFile.createNewFile();
-           }
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>参考网站：             </p>
-<p><a href="https://blog.csdn.net/lixiang_Y/article/details/54946199?locationNum=2&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/lixiang_Y/article/details/54946199?locationNum=2&amp;fps=1</a>              </p>
-<p><a href="https://blog.csdn.net/guoqingshuang/article/details/52443423" target="_blank" rel="noopener">https://blog.csdn.net/guoqingshuang/article/details/52443423</a></p>
-</blockquote>
+<p>###int与string<br><img src="http://p34is8180.bkt.clouddn.com/18-4-14/38899704.jpg" alt=""></p>
+<p><img src="http://p34is8180.bkt.clouddn.com/18-4-14/32382841.jpg" alt=""></p>
 
       
 
@@ -538,7 +278,7 @@ permission:android.permission.READ_CELL_BROADCASTS
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/22/Android笔记/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/11/c++笔记/">展开全文 >></a>
         </p>
       
 
@@ -570,7 +310,7 @@ permission:android.permission.READ_CELL_BROADCASTS
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
     </nav>
   
 

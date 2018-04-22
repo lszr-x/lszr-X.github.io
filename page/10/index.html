@@ -11,7 +11,7 @@
   <meta name="description" content="东北大学秦皇岛分校16级计科专业学生一枚">
 <meta property="og:type" content="website">
 <meta property="og:title" content="lszr&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/page/8/index.html">
+<meta property="og:url" content="http://yoursite.com/page/10/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
 <meta property="og:description" content="东北大学秦皇岛分校16级计科专业学生一枚">
 <meta name="twitter:card" content="summary">
@@ -154,148 +154,280 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-java基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android中活动间通信总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/19/java基础知识/">java基础知识笔记</a>
+      <a class="article-title" href="/2018/01/19/Android中活动间通信总结/">Android中活动间通信总结</a>
     </h1>
   
 
         
-        <a href="/2018/03/19/java基础知识/" class="archive-article-date">
-  	<time datetime="2018-03-19T08:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
+        <a href="/2018/01/19/Android中活动间通信总结/" class="archive-article-date">
+  	<time datetime="2018-01-19T02:58:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#java基础知识</p>
-<ul>
-<li><p>类，对象</p>
-<p>  实例化：使用关键字new来创建一个对象。</p>
-<ul>
-<li><p>实例变量</p>
-<p>关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法</p>
-</li>
-<li><p>类变量：</p>
-<p>类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经常被声明为常量，很少单独使用static声明变量。静态变量在程序开始时创建，在程序结束时销毁。</p>
-</li>
-<li><p>final变量：</p>
-<ul>
-<li>不能对已经初始化的变量修改,且作为类成员变量的时候必须被构造函数初始化或者有初值</li>
-<li>对于final修饰的引用变量，如一个对象，对象的指向不能再改变，比如等于重新new一个，但是其指向可以被改变，即此对象的实例变量可以被修改</li>
-<li>匿名内部类中使用的外部局部变量为什么只能是final变量</li>
-<li>参考：<a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>+ final类：不可以被任何类继承且内部类会被被隐式地指定为final方法。
-+ final方法:不可以被子类重写的方法
-+ java方法是值传递
-</code></pre><p>##内部类仍存疑（参考中）</p>
-<ul>
-<li><p>内部类：参考<a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
-<ul>
-<li>成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括private成员和静态成员）。</li>
-<li><p>当成员内部类拥有和外部类同名的成员变量或者方法时，会发生隐藏现象，即默认情况下访问的是成员内部类的成员。如果要访问外部类的同名成员，需要以下面的形式进行访问：</p>
-<p>  外部类.this.成员变量</p>
-<p>  外部类.this.成员方法</p>
-</li>
-<li><p>在外部类中如果要访问成员内部类的成员，必须先创建一个成员内部类的对象，再通过指向这个对象的引用来访问</p>
-</li>
-<li><p>成员内部类是依附外部类而存在的，也就是说，如果要创建成员内部类的对象，前提是必须存在一个外部类的对象。创建成员内部类对象的一般方式如下：</p>
-<pre><code>Outter outter = new Outter();
-Outter.Inner inner = outter.new Inner();
-</code></pre></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>数据类型：<ul>
-<li>基本数据类型：<ul>
-<li>int float Boolean double shot byte long char</li>
-</ul>
-</li>
-<li>对于基本数据类型，可以直接用==判断是否为相等，每个变量的对比即为其内部的值的对比</li>
-<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="http://www.cnblogs.com/dolphin0520/p/3592500.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>equals()方法：</p>
-<ul>
-<li><p>为Object类中的方法:</p>
-<pre><code>/**
- * Compares this string to the specified object.  The result is {@code*
- * true} if and only if the argument is not {@code null} and is a {@code
- * String} object that represents the same sequence of characters as this
- * object.
- *
- * @param  anObject
- *         The object to compare this {@code String} against
- *
- * @return  {@code true} if the given object represents a {@code String}
- *          equivalent to this string, {@code false} otherwise
- *
- * @see  #compareTo(String)
- * @see  #equalsIgnoreCase(String)
- */
-public boolean equals(Object anObject) {
-    if (this == anObject) {
-        return true;
-    }
-    if (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        int n = value.length;
-        if (n == anotherString.value.length) {
-            char v1[] = value;
-            char v2[] = anotherString.value;
-            int i = 0;
-            while (n-- != 0) {
-                if (v1[i] != v2[i])
-                    return false;
-                i++;
-            }
-            return true;
-        }
-    }
-    return false;
+        <blockquote>
+<p> 作者：不洗碗工作室 - lszr</p>
+<p> 文章出处：<a href="https://lszr-x.github.io/" target="_blank" rel="noopener">Android中活动间通信总结</a></p>
+<p> 版权归作者所有，转载请注明出处</p>
+</blockquote>
+<h2 id="一般传输方法"><a href="#一般传输方法" class="headerlink" title="一般传输方法"></a>一般传输方法</h2><p>一般来讲，在Android中使用intent进行活动间的跳转，如果要在Activity间进行数据的传输，可以使用Intent的putExtra()函数，可以看到，putExtra()函数可以传递多种类型的参数</p>
+<p><img src="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/68456980.jpg" alt=""></p>
+<p>这个函数使用类似哈希的对应方式，以键值对来进行数据的获取，比如，从Activity1到Activity2传一个字符串可以这样写</p>
+<pre><code>Intent intent=new Intent(MainActivity.this,TestActivity.class);
+intent.putExtra(&quot;keyName&quot;,&quot;testString&quot;);
+startActivity(intent);
+</code></pre><p>然后在另一个Activity中调用getIntent()方法去接收数据，然后使用getStringExtra方法，传入键值参数,返回对应的数据</p>
+<pre><code>Intent intent=getIntent();
+String testString=intent.getStringExtra(&quot;keyName&quot;);
+Log.d(&quot;lastActivityData&quot;,testString);
+</code></pre><p>log出来以后可以看到接收到了前一个Activity传过来的数据</p>
+<p><img src="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/962905.jpg" alt=""></p>
+<p>或者可以这样写，也可以获得正确的数据</p>
+<pre><code>Intent intent=getIntent();
+String testString=intent.getExtras().getString(&quot;keyName&quot;);
+Log.d(&quot;lastActivityData&quot;,testString);
+</code></pre><p>这种方式和前面的区别就是调用了getExtras方法，getExtras方法返回的是Bundle类型的数据，所以需要调用getString方法获得对应的数据，关于getExtras这个方法，后面还会用到</p>
+<p>传递String类型的数据就可以简单地这样调用，传递其他类型的数据也是这样的方法，但是在获取其他类型的数据如int类型的数据的时候，使用getIntExtra方法的时候会有第二个参数defaultValue，这个参数是当没有从前一个Activity传递这个数据或者键值对应数据为空的时候返回这个值，而getStringExtra方法已经在内部实现判空的流程。</p>
+<p>在《第一行代码》中，关于Activity跳转及其传递数据有一种较好的方法，减小了不同的Activity之间的耦合度，就是在Activity1中调用Activity2中的静态方法，直接把需要传递的数据作为参数传递进去，可以这样写：</p>
+<p>TestActivity中：</p>
+<pre><code>public static void startTestActivity(Context context,String dataString){
+
+    Intent intent =new Intent(context,TestActivity.class);
+    intent.putExtra(&quot;keyName&quot;,dataString);
+    context.startActivity(intent);
 }
-</code></pre><p>  可以看到，对于在String类中对于equals方法进行了重写，代码逻辑简单，很容易看懂</p>
-</li>
-</ul>
-</li>
-<li><p>instanceof用法：</p>
-<ul>
-<li>instanceof通过返回一个布尔值来指出，这个对象是否是这个特定类或者是它的子类的一个实例。 </li>
-<li>result = object instanceof class         </li>
-</ul>
-</li>
-<li>对象拷贝：<ul>
-<li>分为引用拷贝，浅拷贝，深拷贝</li>
-<li>引用拷贝：直接使用=来给引用对象赋值，是相当于建立了一个相同的的引用，指向同一个对象</li>
-<li>浅拷贝：</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>关于float和double的问题：</p>
-<ul>
-<li>单双精度的区别<br><img src="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg" alt="">        </li>
-<li><p>关于float精度丢失问题，参考<a href="http://blog.csdn.net/bonjean/article/details/51475363" target="_blank" rel="noopener">Java学习_ 基本数据类型_float</a></p>
-</li>
-<li><p>整数是可以被保存为有限的二进制整数的，但是小数不行，有可能出现无限循环的二进制数，所以关于有的小数是可以准确表示的，有的是一个接近的值来存储的。</p>
-</li>
-</ul>
-</li>
-</ul>
+</code></pre><p>在前一个Activity中调用</p>
+<pre><code>TestActivity.startTestActivity(MainActivity.this,&quot;testData&quot;);
+</code></pre><p>这样的方法和前一个方法的区别在于，在要启动的Activity中定义要使用的前一个Activity中的数据，以参数的形式传入对应的数据，这样做的好处在于在写两个Activity间的跳转时，不需要阅读第二个Activity的代码也可以直接进行跳转并传入数据。</p>
+<p>以上是普通的传递数据的方法，但是在实际开发中，会有各种各样类型的数据，如果数据的数量比较大的时候，一个一个去传入参数会很麻烦而且不易于代码的阅读，因此需要用别的方法去传递数据。</p>
+<p>有一种方法是使用Bundle来传递数据，Bundle可以把数据进行类似hash的绑定，以键值对的形式来储存数据到Bundle类型里面，可以在Intent的putExtra方法中直接传递一个Bundle类型的数据，然后在第二个Activity中调用getExtras方法获得对应的Bundle数据，可以这样写：</p>
+<p>在Activity1中创建Bundle类型数据并且作为参数传入：</p>
+<pre><code>Bundle bundle=new Bundle();
+bundle.putString(&quot;bundleKeyName&quot;,&quot;testString&quot;);
+TestActivity.startTestActivity(MainActivity.this,bundle);
+</code></pre><p>在Activity2中的启动Activity静态方法：</p>
+<pre><code>public static void startTestActivity(Context context,Bundle bundle){
+    Intent intent =new Intent(context,TestActivity.class);
+    intent.putExtra(&quot;keyName&quot;,bundle);
+    context.startActivity(intent);
+}
+</code></pre><p>在Activity2中获取对应的Bundle类型的数据并打印到日志上面：</p>
+<pre><code>Intent intent=getIntent();
+Bundle bundle=intent.getBundleExtra(&quot;keyName&quot;);
+Log.d(&quot;lastActivityData&quot;,bundle.getString(&quot;bundleKeyName&quot;));
+</code></pre><p>通过日志来看获取到了对应的数据，以上就是使用Bundle类型在Activity间进行通信，以上这种方法调用的是Intent类的putBundleExtra方法和getBundleExtra方法，然后调用Bundle类的getString方法，也可以使用对应的putExtras方法和getExtras方法，可以省去一个key值，此处就不列出具体代码了。</p>
+<p>我们可以看到使用Bundle类型的数据，可以有效地减少调用跳转静态方法的时候的对应的参数个数，只传一个Bundle类型对应的数据就可以了，但是，首先如果想要知道要传几个，传什么类型的参数就只能去阅读第二个Activity的代码或者对应的开发人员，会变得比较繁琐，除此之外，对于Bundle类型的绑定也较为麻烦，和使用Intent直接传值区别不大。</p>
+<h2 id="传输对象"><a href="#传输对象" class="headerlink" title="传输对象"></a>传输对象</h2><p>那么，对于数据较多，较为繁琐的时候，我们要怎么样去传递对应的数据呢？首先，较多和较为繁琐的数据一般来讲可以建立对应的Model类，使用对象去储存，那么现在需要解决的就是怎样使用Intent去传递对象，有以下三个方法：</p>
+<h3 id="1、使Model类型实现Serializable接口"><a href="#1、使Model类型实现Serializable接口" class="headerlink" title="1、使Model类型实现Serializable接口"></a>1、使Model类型实现Serializable接口</h3><p>我们需要把要传递的数据进行整理，建立一个对应的类：</p>
+<pre><code>public class PersonModel implements Serializable {
+    public String personName;
+    public String personId;
+    public String personGender;
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getPersonGender() {
+        return personGender;
+    }
+
+    public void setPersonGender(String personGender) {
+        this.personGender = personGender;
+    }
+}
+</code></pre><p>如上，建立了应该PersonModel类，包含name，id，gender这三个属性，而且要实现对应的接口。然后在Activity1中建立对应的PersonModel对象，然后设置其对应的数据，即要传入的数据，然后调用Activity2中对应的静态方法，传入PersonModel的对象：</p>
+<pre><code>PersonModel mpersonModel =new PersonModel();
+mpersonModel.setPersonGender(&quot;男&quot;);
+mpersonModel.setPersonName(&quot;lszr&quot;);
+mpersonModel.setPersonId(&quot;123456&quot;);
+TestActivity.startTestActivity(MainActivity.this,mpersonModel);
+</code></pre><p>然后，在Activity2中的静态方法里面，调用Intent的putExtra方法传入对应的对象：</p>
+<pre><code>Intent intent =new Intent(context,TestActivity.class);
+intent.putExtra(&quot;person&quot;,personModel);
+context.startActivity(intent);
+</code></pre><p>查看对应的方法源码，可以看到，是调用了putSerializable方法来传入实现Serializable接口的类的对象</p>
+<pre><code>public @NonNull Intent putExtra(String name, Serializable value) {
+    if (mExtras == null) {
+        mExtras = new Bundle();
+    }
+    mExtras.putSerializable(name, value);
+    return this;
+}
+</code></pre><p>说明Intent类在实现的时候重载了各种参数，因此，对应的也会有getSerializableExtra方法来获得传递的对象，具体实现如下：</p>
+<pre><code>Intent intent=getIntent();
+PersonModel personModel=new PersonModel();
+personModel=(PersonModel)intent.getSerializableExtra(&quot;person&quot;);
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonGender());
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonId());
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonName());
+</code></pre><p>可以看到日志中所打印出来的数据，与预期得到的数据相符，证明这种传递对象的方法是可以的</p>
+<p><img src="http://oz3rf0wt0.bkt.clouddn.com/18-1-21/43259533.jpg" alt=""></p>
+<h3 id="2、使Model类实现Parcelable接口"><a href="#2、使Model类实现Parcelable接口" class="headerlink" title="2、使Model类实现Parcelable接口"></a>2、使Model类实现Parcelable接口</h3><p>同样的需要在Model类中实现这个接口，但是有所不同的是，需要在再实现对应的几个方法，Model的代码如下：</p>
+<pre><code>public class PersonModel implements Parcelable {
+    public String personName;
+    public String personId;
+    public String personGender;
+
+    public PersonModel(){
+
+    }
+
+
+    protected PersonModel(Parcel in) {
+        personName = in.readString();
+        personId = in.readString();
+        personGender = in.readString();
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getPersonGender() {
+        return personGender;
+    }
+
+    public void setPersonGender(String personGender) {
+        this.personGender = personGender;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(personName);
+        dest.writeString(personId);
+        dest.writeString(personGender);
+
+    }
+
+    public static final Creator&lt;PersonModel&gt; CREATOR = new Creator&lt;PersonModel&gt;() {
+        @Override
+        public PersonModel createFromParcel(Parcel in) {
+            return new PersonModel(in);
+        }
+
+        @Override
+        public PersonModel[] newArray(int size) {
+            return new PersonModel[size];
+        }
+    };
+}
+</code></pre><p>可以看到，除了正常的get和set方法外，还需要实现对应的describeContents，writeToParcel，createFromParcel，newArray方法，在writeToParcel方法中需要去对对应的数据进行写入，也就是Parcel类型的writeString等方法，剩下的方法都是对应生成的，不需要改变，这里还有一点需要注意的是在生成的构造方法中的类成员的赋值的顺序需要和writeToParcel方法中Parcel对象的写入需要把顺序进行对应，否则顺序会改变，在Activity1中这样写：</p>
+<pre><code>PersonModel mpersonModel =new PersonModel();
+mpersonModel.setPersonGender(&quot;男&quot;);
+mpersonModel.setPersonName(&quot;lszr&quot;);
+mpersonModel.setPersonId(&quot;123456&quot;);
+TestActivity.startTestActivity(MainActivity.this,mpersonModel);
+</code></pre><p>然后在Activity2，静态方法中：</p>
+<pre><code>Intent intent =new Intent(context,TestActivity.class);
+intent.putExtra(&quot;person&quot;,personModel);
+context.startActivity(intent);
+</code></pre><p>获取对应的数据：</p>
+<pre><code>Intent intent=getIntent();
+PersonModel personModel=new PersonModel();
+personModel=(PersonModel)intent.getParcelableExtra(&quot;person&quot;);
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonGender());
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonId());
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonName());
+</code></pre><p>从网上关于Parcelable和Serializable的性能比较之下，Parcelable的性能和速度是要高于Serializable的，但是实现Parcelable接口写起来较为繁琐，如果结合第三方关于Parcelable的库的话可以大大简化实现过程，这里不再赘述。</p>
+<h3 id="3、使用Json来传递对象"><a href="#3、使用Json来传递对象" class="headerlink" title="3、使用Json来传递对象"></a>3、使用Json来传递对象</h3><p>这个方法主要是使用Gson类（需要导入依赖）的toJson类把对象转换成对应的Json类型的数据，然后通过Intent进行传值，代码如下：</p>
+<p>PersonModel类：</p>
+<pre><code>public class PersonModel{
+    public String personName;
+    public String personId;
+    public String personGender;
+
+    public PersonModel(){
+
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getPersonGender() {
+        return personGender;
+    }
+
+    public void setPersonGender(String personGender) {
+        this.personGender = personGender;
+    }
+}
+</code></pre><p>Activity1中：</p>
+<pre><code>PersonModel mpersonModel =new PersonModel();
+mpersonModel.setPersonGender(&quot;男&quot;);
+mpersonModel.setPersonName(&quot;lszr&quot;);
+mpersonModel.setPersonId(&quot;123456&quot;);
+TestActivity.startTestActivity(MainActivity.this,mpersonModel);
+</code></pre><p>Activity2中：</p>
+<p>静态方法：</p>
+<pre><code>Intent intent =new Intent(context,TestActivity.class);
+String jsonData=new Gson().toJson(personModel);
+intent.putExtra(&quot;keyName&quot;,jsonData);
+context.startActivity(intent);
+</code></pre><p>获取数据：</p>
+<pre><code>Intent intent=getIntent();
+PersonModel personModel= new Gson().fromJson(intent.getStringExtra(&quot;keyName&quot;),PersonModel.class);
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonGender());
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonId());
+Log.d(&quot;lastActivityData&quot;,personModel.getPersonName());
+</code></pre><p>从代码中可以看出，调用了Gson类的toJson方法和fromJson方法来进行数据的转换，这种方法最简单，但是相较前两个方法速度和性能都要差一些，关于性能的问题这里不再赘述。</p>
+<p>综上，这就是基本的关于Android活动间进行数据通信的几个方法。</p>
+<p>参考：《Android第一行代码》</p>
+<p><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0104/2256.html" target="_blank" rel="noopener">Android中传递对象的三种方法</a></p>
+<p><a href="http://blog.csdn.net/oqihaogongyuan/article/details/50944755" target="_blank" rel="noopener">Gson的详细使用</a></p>
+<p><a href="http://www.jb51.net/article/93762.htm" target="_blank" rel="noopener">Android中Intent传递对象的3种方式详解</a></p>
 
       
 
@@ -308,7 +440,7 @@ public boolean equals(Object anObject) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/19/java基础知识/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/19/Android中活动间通信总结/">展开全文 >></a>
         </p>
       
 
@@ -340,7 +472,7 @@ public boolean equals(Object anObject) {
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
     </nav>
   
 

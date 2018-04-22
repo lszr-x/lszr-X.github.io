@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/19/Android笔记第二版/index.html">
 <meta property="og:site_name" content="lszr&#39;s blog">
 <meta property="og:description" content="#Android 笔记第二版 ###1、 关于相机在拍摄或者预览中手动对焦  方法：调用Camera的一个函数，然后实现一个接口：   首先，我们需要使用surfaceView去预览Camera的页面，因此，当点击surfaceView的时候可以去设置对焦：   然后在点击事件里面对于Camera进行判空，如果不为空，则调用autofocus方法，然后在参数中实现Camera.AutoFocusC">
-<meta property="og:updated_time" content="2018-04-20T11:51:29.000Z">
+<meta property="og:updated_time" content="2018-04-21T10:40:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 笔记第二版">
 <meta name="twitter:description" content="#Android 笔记第二版 ###1、 关于相机在拍摄或者预览中手动对焦  方法：调用Camera的一个函数，然后实现一个接口：   首先，我们需要使用surfaceView去预览Camera的页面，因此，当点击surfaceView的时候可以去设置对焦：   然后在点击事件里面对于Camera进行判空，如果不为空，则调用autofocus方法，然后在参数中实现Camera.AutoFocusC">
@@ -234,10 +234,21 @@ surfaceView.setOnClickListener(new View.OnClickListener() {
 <li>调用prepare和start的方法去开始录制</li>
 </ul>
 </li>
-<li><font color="#A52A2A">hhh能改颜色<font></font></font></li>
-<li></li>
+<li><font color="#87CEFF">hhh能改颜色</font></li>
+<li><font color="#87CEFF">3、结束录制</font></li>
+<li><font color="#87CEFF">4、点击聚焦</font>
+
+
+</li>
 </ul>
 </li>
+</ul>
+<p>###4、TextView的特殊设置</p>
+<ul>
+<li>加粗：设置textStyle为bold</li>
+<li>设置行距：android:lineSpacingExtra</li>
+<li>设置行间距的倍数：android:lineSpacingMultiplier，取值范围：浮点数，如果值大于1.0表示增加行间距，如果值小于1.0表示减少行间距，等于1.0时表示无变化。</li>
+<li>代码中设置行间距和倍数：TextView.setLineSpacing(float add, float mult)。</li>
 </ul>
 
       

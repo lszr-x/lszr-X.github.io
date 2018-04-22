@@ -154,147 +154,102 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-java基础知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android笔记第二版" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/19/java基础知识/">java基础知识笔记</a>
+      <a class="article-title" href="/2018/04/19/Android笔记第二版/">Android 笔记第二版</a>
     </h1>
   
 
         
-        <a href="/2018/03/19/java基础知识/" class="archive-article-date">
-  	<time datetime="2018-03-19T08:41:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
+        <a href="/2018/04/19/Android笔记第二版/" class="archive-article-date">
+  	<time datetime="2018-04-19T11:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#java基础知识</p>
+        <p>#Android 笔记第二版</p>
+<p>###1、 关于相机在拍摄或者预览中手动对焦</p>
 <ul>
-<li><p>类，对象</p>
-<p>  实例化：使用关键字new来创建一个对象。</p>
-<ul>
-<li><p>实例变量</p>
-<p>关于在类中声明的非静态变量，统称实例变量，根据其的公有私有性分为对子类是否可见，一般有对应的get和set方法</p>
-</li>
-<li><p>类变量：</p>
-<p>类中声明的静态变量，静态变量除了被声明为常量外很少使用。常量是指声明为public/private，final和static类型的变量。常量初始化后不可改变。静态变量储存在静态存储区。经常被声明为常量，很少单独使用static声明变量。静态变量在程序开始时创建，在程序结束时销毁。</p>
-</li>
-<li><p>final变量：</p>
-<ul>
-<li>不能对已经初始化的变量修改,且作为类成员变量的时候必须被构造函数初始化或者有初值</li>
-<li>对于final修饰的引用变量，如一个对象，对象的指向不能再改变，比如等于重新new一个，但是其指向可以被改变，即此对象的实例变量可以被修改</li>
-<li>匿名内部类中使用的外部局部变量为什么只能是final变量</li>
-<li>参考：<a href="http://www.cnblogs.com/dolphin0520/p/3736238.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3736238.html</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>+ final类：不可以被任何类继承且内部类会被被隐式地指定为final方法。
-+ final方法:不可以被子类重写的方法
-+ java方法是值传递
-</code></pre><p>##内部类仍存疑（参考中）</p>
-<ul>
-<li><p>内部类：参考<a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3811445.html</a></p>
-<ul>
-<li>成员内部类可以无条件访问外部类的所有成员属性和成员方法（包括private成员和静态成员）。</li>
-<li><p>当成员内部类拥有和外部类同名的成员变量或者方法时，会发生隐藏现象，即默认情况下访问的是成员内部类的成员。如果要访问外部类的同名成员，需要以下面的形式进行访问：</p>
-<p>  外部类.this.成员变量</p>
-<p>  外部类.this.成员方法</p>
-</li>
-<li><p>在外部类中如果要访问成员内部类的成员，必须先创建一个成员内部类的对象，再通过指向这个对象的引用来访问</p>
-</li>
-<li><p>成员内部类是依附外部类而存在的，也就是说，如果要创建成员内部类的对象，前提是必须存在一个外部类的对象。创建成员内部类对象的一般方式如下：</p>
-<pre><code>Outter outter = new Outter();
-Outter.Inner inner = outter.new Inner();
-</code></pre></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>数据类型：<ul>
-<li>基本数据类型：<ul>
-<li>int float Boolean double shot byte long char</li>
-</ul>
-</li>
-<li>对于基本数据类型，可以直接用==判断是否为相等，每个变量的对比即为其内部的值的对比</li>
-<li>对于非基本类型的数据，即引用类型的数据，变量储存的是其关联的对象在内存中的地址，如String，不能直接使用==去判断是否为相等的字符串，其String声明的变量为其对象的地址，而不是值。参考<a href="http://www.cnblogs.com/dolphin0520/p/3592500.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3592500.html</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>equals()方法：</p>
-<ul>
-<li><p>为Object类中的方法:</p>
-<pre><code>/**
- * Compares this string to the specified object.  The result is {@code*
- * true} if and only if the argument is not {@code null} and is a {@code
- * String} object that represents the same sequence of characters as this
- * object.
- *
- * @param  anObject
- *         The object to compare this {@code String} against
- *
- * @return  {@code true} if the given object represents a {@code String}
- *          equivalent to this string, {@code false} otherwise
- *
- * @see  #compareTo(String)
- * @see  #equalsIgnoreCase(String)
- */
-public boolean equals(Object anObject) {
-    if (this == anObject) {
-        return true;
-    }
-    if (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        int n = value.length;
-        if (n == anotherString.value.length) {
-            char v1[] = value;
-            char v2[] = anotherString.value;
-            int i = 0;
-            while (n-- != 0) {
-                if (v1[i] != v2[i])
-                    return false;
-                i++;
-            }
-            return true;
+<li><p>方法：调用Camera的一个函数，然后实现一个接口：</p>
+<p>  首先，我们需要使用surfaceView去预览Camera的页面，因此，当点击surfaceView的时候可以去设置对焦：</p>
+<p>  然后在点击事件里面对于Camera进行判空，如果不为空，则调用autofocus方法，然后在参数中实现Camera.AutoFocusCallback接口，即可以实现点击对焦：</p>
+<pre><code>//设置点击调焦
+surfaceView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        if(mCamera!=null){
+
+            mCamera.autoFocus(new Camera.AutoFocusCallback() {
+                @Override
+                public void onAutoFocus(boolean success, Camera camera) {
+
+                }
+            });
         }
     }
-    return false;
-}
-</code></pre><p>  可以看到，对于在String类中对于equals方法进行了重写，代码逻辑简单，很容易看懂</p>
-</li>
+});
+</code></pre></li>
 </ul>
-</li>
-<li><p>instanceof用法：</p>
+<p>至于自动对焦，参考<a href="https://blog.csdn.net/huweigoodboy/article/details/51378751" target="_blank" rel="noopener">Android相机实时自动对焦的完美实现</a>，尚未实现</p>
+<p>###2、Camera.getParameters()调用位置：</p>
 <ul>
-<li>instanceof通过返回一个布尔值来指出，这个对象是否是这个特定类或者是它的子类的一个实例。 </li>
-<li>result = object instanceof class         </li>
+<li>位置：Camera的引用调用open()后，setPreviewDisplay()之前，否则会报Parameters为空的错</li>
+<li>猜测：setPreviewDisplay()之后开始进行预览，Camera的引用会发生一些变化，调用getParameters()会报</li>
 </ul>
-</li>
-<li>对象拷贝：<ul>
-<li>分为引用拷贝，浅拷贝，深拷贝</li>
-<li>引用拷贝：直接使用=来给引用对象赋值，是相当于建立了一个相同的的引用，指向同一个对象</li>
-<li>浅拷贝：</li>
-</ul>
-</li>
-</ul>
+<p>###3、拍摄视频流程</p>
 <ul>
-<li><p>关于float和double的问题：</p>
-<ul>
-<li>单双精度的区别<br><img src="http://p34is8180.bkt.clouddn.com/18-3-21/44127005.jpg" alt="">        </li>
-<li><p>关于float精度丢失问题，参考<a href="http://blog.csdn.net/bonjean/article/details/51475363" target="_blank" rel="noopener">Java学习_ 基本数据类型_float</a></p>
+<li>总流程：<ul>
+<li>初始化Camera控件</li>
+<li>Camera控件绑定surfaceViewHolder，设置previewDisplay</li>
+<li>初始化MediaRecorder（设置Camera等）</li>
+<li>开始录制</li>
+<li>停止录制</li>
+</ul>
 </li>
-<li><p>整数是可以被保存为有限的二进制整数的，但是小数不行，有可能出现无限循环的二进制数，所以关于有的小数是可以准确表示的，有的是一个接近的值来存储的。</p>
+<li>细化流程：<ul>
+<li>1、初始化Camera控件：<ul>
+<li>调用open()方法</li>
+<li>Camera.Parameters在这里获取，同时设置对应参数</li>
+<li>surfaceHolder调用surfaceView的getHolder</li>
+<li>调用Camera的setPreviewDisplay()方法，把Holder作为参数传入</li>
+<li>调用startPreView()方法，开始预览</li>
+<li>设置竖屏录制，调用setDisplayOrientation(90);</li>
+<li>解锁相机，调用unlock方法</li>
+</ul>
+</li>
+<li>2、初始化MediaRecorder<ul>
+<li>设置Camera，setCamera()</li>
+<li>重置Recorder，reset()</li>
+<li>设置Audio和Video的Source</li>
+<li>设置profile</li>
+<li>设置输出文件路径</li>
+<li>设置播放文件时的竖屏，setOrientationHint(90);</li>
+<li>和Camera一起设置预览，setPreviewDisplay(surfaceView.getHolder().getSurface());</li>
+<li>调用prepare和start的方法去开始录制</li>
+</ul>
+</li>
+<li><font color="#87CEFF">hhh能改颜色</font></li>
+<li><font color="#87CEFF">3、结束录制</font></li>
+<li><font color="#87CEFF">4、点击聚焦</font>
+
+
 </li>
 </ul>
 </li>
+</ul>
+<p>###4、TextView的特殊设置</p>
+<ul>
+<li>加粗：设置textStyle为bold</li>
+<li>设置行距：android:lineSpacingExtra</li>
+<li>设置行间距的倍数：android:lineSpacingMultiplier，取值范围：浮点数，如果值大于1.0表示增加行间距，如果值小于1.0表示减少行间距，等于1.0时表示无变化。</li>
+<li>代码中设置行间距和倍数：TextView.setLineSpacing(float add, float mult)。</li>
 </ul>
 
       
@@ -308,7 +263,7 @@ public boolean equals(Object anObject) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/19/java基础知识/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/19/Android笔记第二版/">展开全文 >></a>
         </p>
       
 
@@ -340,7 +295,7 @@ public boolean equals(Object anObject) {
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
